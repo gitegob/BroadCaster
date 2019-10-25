@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+html {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .9rem;
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+}
+.right {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.left a{
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5rem;
+}
+.nav-link-wrapper {
+    margin-left: 1.5rem;
+    padding: 0.4rem;
+    border-bottom: 2px solid transparent;
+}
+.nav-link-wrapper a{
+    text-decoration: none;
+    color: #666;
+}
+.nav-link-wrapper:hover, .active {
+    border-bottom: 2px solid #444;
+    transition: border ease-in-out .5s;
+}
+.nav-link-wrapper:hover a{
+    color: #333;
+}
+.content-wrapper {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('../images/black\ afro\ dude.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    height: 90vh;
+}
+.container {
+    min-height: 100vh;
+    padding-bottom: 30px;
+}
+
+.footer {
+    padding: 2px;
+    text-align: center;
+    background: inherit;
+    background-color: #333;
+    color: whitesmoke;
+    position: static;
+    bottom: 0;
+    margin-top: -30px;
+    height: 30px;
+}
+
+.footer a {
+    text-decoration: underline;
+    color: rgb(106, 171, 231)
+}
+[button] {
+    color: whitesmoke;
+    text-decoration: none;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center
+}
+.description {
+    position: relative;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.slogan {
+    color: whitesmoke;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: .7;
+
+}
+.broadcaster {
+    text-transform: none;
+    font-size: 2.6rem;
+}
+.get-started {
+    border: 2px solid whitesmoke;
+    display: block;
+    width: fit-content;
+    margin: auto;
+}
+.get-started:hover {
+    color: rgba(0,0,0,.7);
+    background-color: white;
+    transition: .8s;
+}
