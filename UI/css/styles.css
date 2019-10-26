@@ -220,7 +220,7 @@
 
 @media (max-width: 600px) {
   html {
-    font-size: .7rem;
+    font-size: .8rem;
   }
   .grid-container {
       display: grid;
