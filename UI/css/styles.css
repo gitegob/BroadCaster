@@ -50,8 +50,8 @@ input:focus {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'left middle middle middle middle middle';
+    'header header header header'
+    'left middle middle middle';
   grid-template-rows:
     auto
     1fr;
@@ -60,8 +60,8 @@ input:focus {
 .index-page .grid-container,
 .logup-page .grid-container {
   grid-template-areas:
-    'header header header header header header'
-    'middle middle middle middle middle middle';
+    'header header header header'
+    'middle middle middle middle';
 }
 .header {
   grid-area: header;
@@ -122,16 +122,15 @@ input:focus {
 .status-link-wrapper:hover a {
   color: #333;
 }
-.leftside .user-pic {
-  position: relative;
-  width: 100%;
-  border: 1px solid rgb(223, 220, 220);
-}
 img.author-pic {
   width: 2.5rem;
   height: 2rem;
   border: 1px solid grey;
   border-radius: 50%;
+}
+img[alt='user picture'] {
+  width: 100%;
+  border: 1px solid rgb(223, 220, 220);
 }
 .leftside,
 .middle {
@@ -142,6 +141,9 @@ img.author-pic {
   overflow: auto;
   background-color: whitesmoke;
   margin-top: 1rem;
+  height: fit-content;
+  position: sticky;
+  top: 10%;
 }
 
 .middle {
@@ -340,9 +342,9 @@ img.author-pic {
 @media (max-width: 768px) {
   .profile-page .grid-container {
     grid-template-areas:
-      'header header header header header header'
-      'left left left left left left'
-      'middle middle middle middle middle middle';
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle';
   }
   .profile-page .leftside .user-wrapper {
     display: flex;
@@ -354,6 +356,7 @@ img.author-pic {
   }
   .profile-page .leftside {
     min-height: auto;
+    position: static;
   }
 }
 @media (max-width: 600px) {
@@ -362,9 +365,9 @@ img.author-pic {
   }
   .grid-container {
     grid-template-areas:
-      'header header header header header header'
-      'left left left left left left'
-      'middle middle middle middle middle middle';
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle';
   }
   .tab-wrapper {
     position: static;
