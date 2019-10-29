@@ -1,8 +1,8 @@
 const makeActive = (parameter) => {
   parameter.forEach((el) => {
     el.addEventListener('click', () => {
-      parameter.forEach((element) => {
-        element.classList.remove('active');
+      parameter.forEach((elmt) => {
+        elmt.classList.remove('active');
       });
       el.classList.add('active');
     });
