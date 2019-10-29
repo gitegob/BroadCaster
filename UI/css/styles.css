@@ -50,8 +50,8 @@ input:focus {
 .grid-container {
   display: grid;
   grid-template-areas:
-    'header header header header header header'
-    'left middle middle middle middle middle';
+    'header header header header'
+    'left middle middle middle';
   grid-template-rows:
     auto
     1fr;
@@ -60,8 +60,8 @@ input:focus {
 .index-page .grid-container,
 .logup-page .grid-container {
   grid-template-areas:
-    'header header header header header header'
-    'middle middle middle middle middle middle';
+    'header header header header'
+    'middle middle middle middle';
 }
 .header {
   grid-area: header;
@@ -84,6 +84,7 @@ input:focus {
 .left a {
   color: #333;
   font-size: 1.8rem;
+  font-weight: bold;
   text-transform: none;
   font-variant: small-caps;
 }
@@ -122,16 +123,18 @@ input:focus {
 .status-link-wrapper:hover a {
   color: #333;
 }
-.leftside .user-pic {
-  position: relative;
-  width: 100%;
-  border: 1px solid rgb(223, 220, 220);
+.author-info {
+  display: flex;
 }
 img.author-pic {
   width: 2.5rem;
   height: 2rem;
   border: 1px solid grey;
   border-radius: 50%;
+}
+img[alt='user picture'] {
+  width: 100%;
+  border: 1px solid rgb(223, 220, 220);
 }
 .leftside,
 .middle {
@@ -142,6 +145,9 @@ img.author-pic {
   overflow: auto;
   background-color: whitesmoke;
   margin-top: 1rem;
+  height: fit-content;
+  position: sticky;
+  top: 10%;
 }
 
 .middle {
@@ -242,7 +248,7 @@ img.author-pic {
   background-color: rgb(224, 224, 224);
 }
 .records-wrapper {
-  padding: 1rem 0 1rem 0;
+  padding: 0 0 1rem 0;
 }
 .record {
   background-color: whitesmoke;
@@ -254,6 +260,7 @@ img.author-pic {
 }
 .record .type {
   font-weight: bold;
+  font-style: italic;
 }
 
 .inter {
@@ -277,6 +284,7 @@ img.author-pic {
 }
 .comment {
   color: #222;
+  font-size: 1.1rem;
   max-height: 200px;
   display: -webkit-box;
   overflow: hidden;
@@ -299,6 +307,7 @@ img.author-pic {
 }
 .author-info .author-name {
   font-size: 1.2rem;
+  padding: 0.25rem;
   margin-left: 0.5rem;
 }
 .user-wrapper .user-info div {
@@ -317,12 +326,33 @@ img.author-pic {
 }
 .user-wrapper .user-info .user-name {
   font-size: 1.2rem;
+  font-weight: bolder;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination .page {
+  text-align: center;
+  color: #555;
+  padding: 0.3rem;
+  margin: 0.8rem;
+  border-bottom: 2px solid transparent;
+}
+.pagination .page:hover {
+  border-bottom: 2px solid #222;
+  color: #333;
+  transition: 0.8s;
+}
+.pagination .active {
+  color: #222;
+  border-bottom: 2px solid #222;
+  transition: 0.8s;
 }
 .whole-body {
   min-height: 95.5vh;
   padding-bottom: 30px;
 }
-
 .footer {
   padding: 10px;
   text-align: center;
@@ -340,9 +370,9 @@ img.author-pic {
 @media (max-width: 768px) {
   .profile-page .grid-container {
     grid-template-areas:
-      'header header header header header header'
-      'left left left left left left'
-      'middle middle middle middle middle middle';
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle';
   }
   .profile-page .leftside .user-wrapper {
     display: flex;
@@ -354,6 +384,7 @@ img.author-pic {
   }
   .profile-page .leftside {
     min-height: auto;
+    position: static;
   }
 }
 @media (max-width: 600px) {
@@ -362,9 +393,9 @@ img.author-pic {
   }
   .grid-container {
     grid-template-areas:
-      'header header header header header header'
-      'left left left left left left'
-      'middle middle middle middle middle middle';
+      'header header header header'
+      'left left left left'
+      'middle middle middle middle';
   }
   .tab-wrapper {
     position: static;
