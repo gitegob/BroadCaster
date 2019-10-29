@@ -10,3 +10,4 @@ const makeActive = (parameter) => {
 };
 makeActive(document.querySelectorAll('.status-link-wrapper'));
 makeActive(document.querySelectorAll('.tab-link-wrapper'));
+makeActive(document.querySelectorAll('div.page'));

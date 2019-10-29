@@ -328,11 +328,31 @@ img[alt='user picture'] {
   font-size: 1.2rem;
   font-weight: bolder;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination .page {
+  text-align: center;
+  color: #555;
+  padding: 0.3rem;
+  margin: 0.8rem;
+  border-bottom: 2px solid transparent;
+}
+.pagination .page:hover {
+  border-bottom: 2px solid #222;
+  color: #333;
+  transition: 0.8s;
+}
+.pagination .active {
+  color: #222;
+  border-bottom: 2px solid #222;
+  transition: 0.8s;
+}
 .whole-body {
   min-height: 95.5vh;
   padding-bottom: 30px;
 }
-
 .footer {
   padding: 10px;
   text-align: center;
