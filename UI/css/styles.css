@@ -84,6 +84,7 @@ input:focus {
 .left a {
   color: #333;
   font-size: 1.8rem;
+  font-weight: bold;
   text-transform: none;
   font-variant: small-caps;
 }
@@ -121,6 +122,9 @@ input:focus {
 .tab-link-wrapper:hover a,
 .status-link-wrapper:hover a {
   color: #333;
+}
+.author-info {
+  display: flex;
 }
 img.author-pic {
   width: 2.5rem;
@@ -244,7 +248,7 @@ img[alt='user picture'] {
   background-color: rgb(224, 224, 224);
 }
 .records-wrapper {
-  padding: 1rem 0 1rem 0;
+  padding: 0 0 1rem 0;
 }
 .record {
   background-color: whitesmoke;
@@ -256,6 +260,7 @@ img[alt='user picture'] {
 }
 .record .type {
   font-weight: bold;
+  font-style: italic;
 }
 
 .inter {
@@ -279,6 +284,7 @@ img[alt='user picture'] {
 }
 .comment {
   color: #222;
+  font-size: 1.1rem;
   max-height: 200px;
   display: -webkit-box;
   overflow: hidden;
@@ -301,6 +307,7 @@ img[alt='user picture'] {
 }
 .author-info .author-name {
   font-size: 1.2rem;
+  padding: 0.25rem;
   margin-left: 0.5rem;
 }
 .user-wrapper .user-info div {
@@ -319,6 +326,7 @@ img[alt='user picture'] {
 }
 .user-wrapper .user-info .user-name {
   font-size: 1.2rem;
+  font-weight: bolder;
 }
 .whole-body {
   min-height: 95.5vh;
