@@ -93,12 +93,20 @@ input:focus {
 .status-link-wrapper {
   text-align: center;
   margin-left: 1.5rem;
-  padding: 0.4rem;
+  text-transform: uppercase;
+  padding: 0.3rem;
   border-bottom: 2px solid transparent;
+}
+.profile-page .status-link-wrapper,
+.view-page .status-link-wrapper {
+  color: #222;
 }
 .status-link-wrapper,
 .tab-link-wrapper {
   margin: 0;
+}
+.status-link-wrapper {
+  padding: 0.2rem;
 }
 .nav-link-wrapper a,
 .tab-link-wrapper a,
@@ -128,7 +136,7 @@ input:focus {
 }
 img.author-pic {
   width: 2.5rem;
-  height: 2rem;
+  height: 2.5rem;
   border: 1px solid grey;
   border-radius: 50%;
 }
@@ -152,15 +160,15 @@ img[alt='user picture'] {
 
 .middle {
   grid-area: middle;
+  background: none;
+}
+.index-page .middle,
+.logup-page .middle {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('../images/black afro dude.jpg');
   background-color: #333;
   background-size: cover;
   background-repeat: no-repeat;
-}
-.feed-page .middle,
-.profile-page .middle {
-  background: none;
 }
 .rightside {
   grid-area: right;
@@ -286,14 +294,45 @@ img[alt='user picture'] {
   color: #222;
   font-size: 1.1rem;
   max-height: 200px;
+  letter-spacing: 1px;
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 }
+.view-page .comment {
+  display: block;
+  max-height: none;
+  line-height: 25px;
+}
+.map-panel h3,
+.media-panel h3 {
+  padding: 1rem 0 0 1rem;
+  color: #444;
+}
+.view-page .map {
+  padding: 1rem;
+}
+
+.view-page .media-panel {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4px;
+}
+.view-page .media-panel .image-wrapper {
+  flex: 100%;
+  max-width: 100%;
+  padding: 4px;
+}
+.view-page .media-panel .image-wrapper img {
+  width: 100%;
+  margin-top: 8px;
+}
+iframe {
+  width: 100%;
+}
 .status {
-  text-align: right;
   text-transform: uppercase;
 }
 .record .resolved {
@@ -305,6 +344,24 @@ img[alt='user picture'] {
 .record .rejected {
   color: red;
 }
+.status-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+select option {
+  color: #444;
+}
+select.status {
+  display: block;
+  border: none;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  background-color: whitesmoke;
+}
+select.status:focus {
+  outline: none;
+}
 .author-info .author-name {
   font-size: 1.2rem;
   padding: 0.25rem;
@@ -312,7 +369,7 @@ img[alt='user picture'] {
 }
 .user-wrapper .user-info div {
   color: #555;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
   text-align: center;
   font-size: 1rem;
   padding: 0.3rem;
@@ -328,6 +385,7 @@ img[alt='user picture'] {
   font-size: 1.2rem;
   font-weight: bolder;
 }
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -368,21 +426,21 @@ img[alt='user picture'] {
 /* SMALLER SCREENS */
 
 @media (max-width: 768px) {
-  .profile-page .grid-container {
+  .pages .grid-container {
     grid-template-areas:
       'header header header header'
       'left left left left'
       'middle middle middle middle';
   }
-  .profile-page .leftside .user-wrapper {
+  .pages .leftside .user-wrapper {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
-  .profile-page .leftside .user-pic {
+  .pages .leftside .user-pic {
     width: 35%;
   }
-  .profile-page .leftside {
+  .pages .leftside {
     min-height: auto;
     position: static;
   }
