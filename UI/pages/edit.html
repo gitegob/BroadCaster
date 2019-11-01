@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="pages new-page view-page">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lato|Lexend+Deca|Montserrat|Jomolhari&display=swap"
+    rel="stylesheet" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <title>Editing . BroadCaster</title>
+</head>
+
+<body>
+  <div class="whole-body">
+    <div class="grid-container">
+      <div class="header">
+        <div class="left">
+          <a href="../index.html">BroadCaster</a>
+        </div>
+        <div class="right">
+          <div class="nav-link-wrapper active">
+            <a href="profile.html">Dashboard</a>
+          </div>
+          <div class="nav-link-wrapper">
+            <a href="new.html">New Record</a>
+          </div>
+          <div class="nav-link-wrapper">
+            <a href="login.html">Log Out</a>
+          </div>
+        </div>
+      </div>
+      <div class="middle">
+
+        <div class="new-record">
+          <div class="record-info">
+            <div class="author-info">
+              <div>
+                <img src="../images/kevin.jpg" alt="author pic" class="author-pic">
+              </div>
+              <span class="author-name"><a href="profile.html">Kevin Hart</a></span>
+            </div>
+          </div>
+          <article class="record-edit">
+            <input type="text" class="record-title-edit" placeholder="What is the issue?" value="Corruption somewhere">
+            <textarea name="record-comment" class="record-comment-edit" rows="15"
+              placeholder="Elaborate...">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis deleniti nulla dolores tempora temporibus reprehenderit eos voluptas similique aliquam culpa eveniet hic ipsa, voluptate assumenda labore laudantium aut et doloribus?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit autem voluptatum architecto a voluptate nostrum dicta quaerat eius molestias fuga adipisci consequuntur nobis aperiam, in aliquam totam nemo quo perspiciatis?
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem error placeat quae quibusdam excepturi! Incidunt ratione similique a? Quae soluta cupiditate temporibus quaerat voluptates illum exercitationem explicabo dolorum qui quas.</textarea>
+          </article>
+          <div class="add-location">
+            <h3>Edit location</h3>
+            <button class="geolocate" button>Your location</button>
+            <button class="locate" button>Different location</button>
+            <div class="coordinates">
+              <input type="text" class="latitude" placeholder="Latitude">
+              <input type="text" class="longitude" placeholder="Longitude">
+              <button type="submit" class="submit-coordinates">Add</button>
+            </div>
+          </div>
+          <div class="media-panel">
+            <h3 class="media-title">Media</h3>
+            <div class="image-wrapper">
+
+              <img src="../images/Cathédrale_Marie-Rheine-du-Monde_by_Thierry_Pon.jpg">
+              <div class="del-image-panel">
+                <button class="img-delete" button>Remove</button>
+              </div>
+            </div>
+            <div class="image-wrapper">
+
+              <img src="../images/Halifax_Sunset_by_Vlad_Drobinin.jpg">
+              <div class="del-image-panel">
+                <button class="img-delete" button>Remove</button>
+              </div>
+            </div>
+          </div>
+          <div class="add-media">
+            <span>Add Images</span>
+            <input type="file" name="images" class="file-upload">
+          </div>
+          <div class="post-panel">
+            <a href="view.html" class="cancel" button>Back to Record</a>
+            <a href="view.html" class="post" button>Update</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    &copy; 2019 - BroadCaster &nbsp;
+    <a href="../pages/contact.html">Contact us</a><span> &nbsp; </span><a href="#">API</a>
+  </div>
+  <script src="../scripts/script.js"></script>
+</body>
+
+</html>
