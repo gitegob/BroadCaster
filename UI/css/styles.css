@@ -45,6 +45,7 @@ input:focus {
   padding: 10px;
   cursor: pointer;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .grid-container {
@@ -58,7 +59,10 @@ input:focus {
   min-height: 95.5vh;
 }
 .index-page .grid-container,
-.logup-page .grid-container {
+.logup-page .grid-container,
+.new-page .grid-container,
+.about-page .grid-container,
+.contact-page .grid-container {
   grid-template-areas:
     'header header header header'
     'middle middle middle middle';
@@ -140,7 +144,7 @@ img.author-pic {
   border: 1px solid grey;
   border-radius: 50%;
 }
-img[alt='user picture'] {
+.user-wrapper .user-pic img {
   width: 100%;
   border: 1px solid rgb(223, 220, 220);
 }
@@ -256,7 +260,7 @@ img[alt='user picture'] {
   background-color: rgb(224, 224, 224);
 }
 .records-wrapper {
-  padding: 0 0 1rem 0;
+  padding-bottom: 1rem;
 }
 .record {
   background-color: whitesmoke;
@@ -329,6 +333,34 @@ img[alt='user picture'] {
   width: 100%;
   margin-top: 8px;
 }
+.view-page .status-panel .edit-delete {
+  display: flex;
+  flex-wrap: wrap;
+}
+.view-page .status-panel .edit-delete a,
+.del-image-panel button {
+  margin: 0 0.5rem 0 0.5rem;
+  color: whitesmoke;
+  border: none;
+}
+.del-image-panel button {
+  margin: 0;
+}
+.view-page .status-panel .edit-delete .delete,
+.del-image-panel .img-delete {
+  background-color: rgb(218, 42, 42);
+}
+.view-page .status-panel .edit-delete .edit {
+  background-color: #444;
+}
+.view-page .status-panel .edit-delete .delete:hover,
+.del-image-panel .img-delete:hover {
+  background-color: rgb(172, 1, 1);
+}
+.view-page .status-panel .edit-delete .edit:hover {
+  background-color: #222;
+}
+
 iframe {
   width: 100%;
 }
@@ -386,9 +418,222 @@ select.status:focus {
   font-weight: bolder;
 }
 
+textarea {
+  display: block;
+  resize: none;
+  margin: 5px;
+  margin: auto;
+  margin-top: 2px;
+  width: 98%;
+  padding: 2rem;
+  font-size: 1.5em;
+  color: #333;
+  font-family: 'Jomolhari', serif;
+  border: none;
+  background-color: whitesmoke;
+}
+textarea:focus {
+  outline: none;
+}
+.new-page input {
+  border: none;
+  font-family: 'Jomolhari', serif;
+  border-bottom: 1px solid #888;
+  font-size: 2rem;
+  color: #444;
+}
+.new-record {
+  width: 90%;
+  margin: auto;
+  padding: 2rem;
+}
+.record-edit {
+  padding: 1rem;
+}
+.new-page .record-info {
+  display: block;
+}
+.new-page .record-info .author-info {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 1rem;
+}
+.new-page .record-info .author-info span {
+  display: block;
+}
+
+.new-page .add-location input,
+.new-page .add-media input {
+  width: fit-content;
+  font-size: 1rem;
+}
+.new-page .add-media {
+  background-color: #888;
+  padding: 0.5rem;
+  width: fit-content;
+}
+.new-page .add-media input {
+  border: none;
+  display: inline;
+  padding: 0;
+}
+.new-page .add-media span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.new-page .add-location button {
+  padding: 0.3rem;
+  margin: 1rem;
+  border: none;
+  background-color: #555;
+  color: white;
+}
+.new-page .add-location button:hover {
+  background-color: #333;
+}
+.new-page .add-location button:focus {
+  outline: none;
+}
+.new-page .add-location .coordinates {
+  background-color: #ddd;
+  width: fit-content;
+  display: none;
+}
+.show {
+  display: block !important;
+}
+.new-page .new-record .post-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 1rem;
+}
+.new-page .new-record .post-panel .post {
+  background-color: green;
+  color: whitesmoke;
+}
+.new-page .new-record .post-panel .post:hover {
+  background-color: rgb(1, 61, 1);
+}
+.new-page .new-record .post-panel .cancel {
+  background-color: #444;
+  color: whitesmoke;
+}
+.new-page .new-record .post-panel .cancel:hover {
+  background-color: #222;
+}
+.new-page .new-record .post-panel a {
+  margin-left: 1rem;
+}
+.about-page .middle,
+.contact-page .middle {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+.contact-page .middle {
+  flex-wrap: wrap-reverse;
+}
+.about-page .middle div,
+.contact-page .middle div {
+  padding: 1rem;
+}
+.about-page .my-info,
+.contact-page .my-info {
+  flex: 30%;
+  background-color: #666;
+}
+.about-page .my-info .user-wrapper,
+.contact-page .my-info .user-wrapper {
+  background-color: inherit;
+  color: whitesmoke;
+}
+.about-page .my-info .user-wrapper div a,
+.about-page .my-info .user-wrapper div,
+.contact-page .my-info .user-wrapper div a,
+.contact-page .my-info .user-wrapper div {
+  color: whitesmoke;
+}
+.about-page .about-me,
+.contact-page .about-me {
+  flex: 70%;
+  background-color: whitesmoke;
+  font-size: 1.2rem;
+}
+.contact-page .user-wrapper .user-pic img {
+  border: none;
+}
+.contact-page .my-email,
+.contact-page .my-github,
+.contact-page .my-medium {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.contact-page .user-wrapper a {
+  text-decoration: underline;
+  color: #888;
+}
+.contact-page .user-info div {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+.contact-page .my-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.contact-page .my-email img,
+.contact-page .my-github img,
+.contact-page .my-medium img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+.feedback {
+  padding: 1rem;
+}
+.feedback .hear-from-u {
+  color: #333;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.feedback-email {
+  border: none;
+  border-left: 3px solid #444;
+  background-color: #ddd;
+  margin: 1rem;
+  margin-left: 0;
+  padding: 1rem;
+}
+.feedback-text {
+  margin: 1rem;
+  margin-left: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+  font-family: 'Jomolhari', serif;
+  border: none;
+  border-left: 3px solid #444;
+  background-color: #ddd;
+}
+.feedback-submit {
+  border: none;
+  background-color: #444;
+  color: whitesmoke;
+}
+.feedback-submit:hover {
+  background-color: #222;
+}
 .pagination {
   display: flex;
   justify-content: center;
+}
+.del-image-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .pagination .page {
   text-align: center;
@@ -464,5 +709,16 @@ select.status:focus {
     -moz-transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
+  }
+  .new-page textarea {
+    padding: 1rem;
+    font-size: 1.2rem;
+    width: 100%;
+  }
+  .new-record input {
+    font-size: 1.5rem;
+  }
+  .new-record {
+    width: 100%;
   }
 }
