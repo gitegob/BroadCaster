@@ -60,7 +60,9 @@ input:focus {
 }
 .index-page .grid-container,
 .logup-page .grid-container,
-.new-page .grid-container {
+.new-page .grid-container,
+.about-page .grid-container,
+.contact-page .grid-container {
   grid-template-areas:
     'header header header header'
     'middle middle middle middle';
@@ -142,7 +144,7 @@ img.author-pic {
   border: 1px solid grey;
   border-radius: 50%;
 }
-img[alt='user picture'] {
+.user-wrapper .user-pic img {
   width: 100%;
   border: 1px solid rgb(223, 220, 220);
 }
@@ -331,6 +333,34 @@ img[alt='user picture'] {
   width: 100%;
   margin-top: 8px;
 }
+.view-page .status-panel .edit-delete {
+  display: flex;
+  flex-wrap: wrap;
+}
+.view-page .status-panel .edit-delete a,
+.del-image-panel button {
+  margin: 0 0.5rem 0 0.5rem;
+  color: whitesmoke;
+  border: none;
+}
+.del-image-panel button {
+  margin: 0;
+}
+.view-page .status-panel .edit-delete .delete,
+.del-image-panel .img-delete {
+  background-color: rgb(218, 42, 42);
+}
+.view-page .status-panel .edit-delete .edit {
+  background-color: #444;
+}
+.view-page .status-panel .edit-delete .delete:hover,
+.del-image-panel .img-delete:hover {
+  background-color: rgb(172, 1, 1);
+}
+.view-page .status-panel .edit-delete .edit:hover {
+  background-color: #222;
+}
+
 iframe {
   width: 100%;
 }
@@ -388,7 +418,7 @@ select.status:focus {
   font-weight: bolder;
 }
 
-.new-page textarea {
+textarea {
   display: block;
   resize: none;
   margin: 5px;
@@ -402,7 +432,7 @@ select.status:focus {
   border: none;
   background-color: whitesmoke;
 }
-.new-page textarea:focus {
+textarea:focus {
   outline: none;
 }
 .new-page input {
@@ -444,10 +474,6 @@ select.status:focus {
   padding: 0.5rem;
   width: fit-content;
 }
-.new-record div,
-.new-record article {
-  margin-top: 1rem;
-}
 .new-page .add-media input {
   border: none;
   display: inline;
@@ -482,6 +508,7 @@ select.status:focus {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin: 1rem;
 }
 .new-page .new-record .post-panel .post {
   background-color: green;
@@ -491,18 +518,122 @@ select.status:focus {
   background-color: rgb(1, 61, 1);
 }
 .new-page .new-record .post-panel .cancel {
-  background-color: #666;
+  background-color: #444;
   color: whitesmoke;
 }
 .new-page .new-record .post-panel .cancel:hover {
-  background-color: #333;
+  background-color: #222;
 }
 .new-page .new-record .post-panel a {
   margin-left: 1rem;
 }
+.about-page .middle,
+.contact-page .middle {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+.contact-page .middle {
+  flex-wrap: wrap-reverse;
+}
+.about-page .middle div,
+.contact-page .middle div {
+  padding: 1rem;
+}
+.about-page .my-info,
+.contact-page .my-info {
+  flex: 30%;
+  background-color: #666;
+}
+.about-page .my-info .user-wrapper,
+.contact-page .my-info .user-wrapper {
+  background-color: inherit;
+  color: whitesmoke;
+}
+.about-page .my-info .user-wrapper div a,
+.about-page .my-info .user-wrapper div,
+.contact-page .my-info .user-wrapper div a,
+.contact-page .my-info .user-wrapper div {
+  color: whitesmoke;
+}
+.about-page .about-me,
+.contact-page .about-me {
+  flex: 70%;
+  background-color: whitesmoke;
+  font-size: 1.2rem;
+}
+.contact-page .user-wrapper .user-pic img {
+  border: none;
+}
+.contact-page .my-email,
+.contact-page .my-github,
+.contact-page .my-medium {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.contact-page .user-wrapper a {
+  text-decoration: underline;
+  color: #888;
+}
+.contact-page .user-info div {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+.contact-page .my-name {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+.contact-page .my-email img,
+.contact-page .my-github img,
+.contact-page .my-medium img {
+  width: 2rem;
+  height: 2rem;
+  margin-right: 0.5rem;
+}
+.feedback {
+  padding: 1rem;
+}
+.feedback .hear-from-u {
+  color: #333;
+  text-align: center;
+  font-size: 1.2rem;
+}
+.feedback-email {
+  border: none;
+  border-left: 3px solid #444;
+  background-color: #ddd;
+  margin: 1rem;
+  margin-left: 0;
+  padding: 1rem;
+}
+.feedback-text {
+  margin: 1rem;
+  margin-left: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+  font-family: 'Jomolhari', serif;
+  border: none;
+  border-left: 3px solid #444;
+  background-color: #ddd;
+}
+.feedback-submit {
+  border: none;
+  background-color: #444;
+  color: whitesmoke;
+}
+.feedback-submit:hover {
+  background-color: #222;
+}
 .pagination {
   display: flex;
   justify-content: center;
+}
+.del-image-panel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .pagination .page {
   text-align: center;
@@ -582,6 +713,7 @@ select.status:focus {
   .new-page textarea {
     padding: 1rem;
     font-size: 1.2rem;
+    width: 100%;
   }
   .new-record input {
     font-size: 1.5rem;

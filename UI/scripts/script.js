@@ -54,3 +54,9 @@ document.querySelector('.geolocate').addEventListener('click', () => {
     toggleShow();
   }
 });
+
+document.querySelectorAll('.img-delete').forEach((element) => {
+  element.addEventListener('click', () => {
+    document.querySelector('.img-delete').parentElement.parentElement.remove();
+  });
+});
