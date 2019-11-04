@@ -3,7 +3,9 @@ import schema from '../models/schema';
 import Helpers from '../helpers/helpers';
 import { users } from '../data/data';
 
+
 class Middleware {
+
   static validateSignup(req, res, next) {
     const {
       firstName, lastName, email, password, userName, phone,
@@ -16,13 +18,7 @@ class Middleware {
       userName,
       phone,
     });
-    if (error) {
-      Helpers.sendError(
-        res,
-        400,
-        error.details[0].message.replace(/[/"]/g, ''),
-      );
-    } else next();
+    Helpers.checkJoiError(error, res, next);
   }
 
   static checkSignup(req, res, next) {
@@ -39,13 +35,7 @@ class Middleware {
       email,
       password,
     });
-    if (error) {
-      Helpers.sendError(
-        res,
-        400,
-        error.details[0].message.replace(/[/"]/g, ''),
-      );
-    } else next();
+    Helpers.checkJoiError(error, res, next);
   }
 
   static checkLogin(req, res, next) {
