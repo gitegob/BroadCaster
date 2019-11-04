@@ -3,6 +3,7 @@ import { json, urlencoded } from 'body-parser';
 import morgan from 'morgan';
 import { config } from 'dotenv';
 import Helpers from './v1/helpers/helpers';
+import userRoutes from './v1/routes/userRoutes';
 
 config();
 
@@ -19,6 +20,8 @@ app.use(
 app.get('/', (req, res) => {
   Helpers.sendSuccess(res, 200, 'Welcome to BroadCaster');
 });
+
+app.use('/api/v1/auth', userRoutes);
 app.use('/*', (_req, res) => {
   Helpers.sendError(res, 404, 'Not Found');
 });
@@ -31,6 +34,7 @@ app.use((error, _req, res, _next) => {
       'Syntax error, Please double check your input',
     );
   } else {
+    process.stdout.write(error);
     Helpers.sendError(res, error.status || 500, 'SERVER DOWN!');
   }
 });

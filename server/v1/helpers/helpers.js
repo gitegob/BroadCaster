@@ -1,3 +1,5 @@
+import jwt from 'jsonwebtoken';
+
 class Helpers {
   static sendSuccess(res, status, message, data) {
     res.status(status).send({
@@ -12,6 +14,10 @@ class Helpers {
       status,
       error,
     });
+  }
+
+  static genToken({ id, firstName, lastName }) {
+    return jwt.sign({ id, firstName, lastName }, process.env.JWT_KEY);
   }
 }
 
