@@ -35,7 +35,7 @@ app.use((error, _req, res, _next) => {
     );
   } else {
     process.stdout.write(error);
-    Helpers.sendError(res, error.status || 500, 'SERVER DOWN!');
+    Helpers.sendError(res, error.status || 500, 'OOPS! SERVER DOWN!');
   }
 });
 

@@ -16,8 +16,12 @@ class Helpers {
     });
   }
 
-  static genToken({ id, firstName, lastName }) {
-    return jwt.sign({ id, firstName, lastName }, process.env.JWT_KEY);
+  static genToken({
+    id, firstName, lastName, isAdmin,
+  }) {
+    return jwt.sign({
+      id, firstName, lastName, isAdmin,
+    }, process.env.JWT_KEY);
   }
 }
 
