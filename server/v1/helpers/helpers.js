@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import ServerError from '../models/errorModel';
 
 class Helpers {
   static sendSuccess(res, status, message, data) {
@@ -16,8 +17,26 @@ class Helpers {
     });
   }
 
-  static genToken({ id, firstName, lastName }) {
-    return jwt.sign({ id, firstName, lastName }, process.env.JWT_KEY);
+  static checkJoiError(error, res, next) {
+    if (error) {
+      this.sendError(
+        res,
+        400,
+        error.details[0].message.replace(/[/"]/g, ''),
+      );
+    } else next();
+  }
+
+  static genToken({
+    id, firstName, lastName, isAdmin,
+  }) {
+    return jwt.sign({
+      id, firstName, lastName, isAdmin,
+    }, process.env.JWT_KEY);
+  }
+
+  static serverError(status) {
+    throw new ServerError(status);
   }
 }
 

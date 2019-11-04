@@ -17,10 +17,7 @@ describe('App tests', () => {
         done();
       });
   });
-});
-
-describe('Handle invalid routes', () => {
-  it('should display an error message', (done) => {
+  it('should display a not found message', (done) => {
     chai
       .request(app)
       .get('/hiuhukhoih')
@@ -29,6 +26,32 @@ describe('Handle invalid routes', () => {
         res.body.should.be.a('object');
         res.body.should.have.property('status').eql(404);
         res.body.should.have.property('error').eql('Not Found');
+        done();
+      });
+  });
+  it('should display a syntax error message', (done) => {
+    chai
+      .request(app)
+      .post('/server')
+      .send({ status: 400 })
+      .end((_err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        res.body.should.have.property('status').eql(400);
+        res.body.should.have.property('error').eql('Syntax error, Please double check your input');
+        done();
+      });
+  });
+  it('should display a server error message', (done) => {
+    chai
+      .request(app)
+      .post('/server')
+      .send({ status: 500 })
+      .end((_err, res) => {
+        res.should.have.status(500);
+        res.body.should.be.a('object');
+        res.body.should.have.property('status').eql(500);
+        res.body.should.have.property('error').eql('OOPS! SERVER DOWN!');
         done();
       });
   });

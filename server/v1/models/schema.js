@@ -29,6 +29,14 @@ const schema = {
       .regex(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\\./0-9]*$/)
       .required(),
   }),
+  loginSchema: Joi.object({
+    email: Joi.string()
+      .email()
+      .required(),
+    password: Joi.string()
+      .regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,128}$/)
+      .required(),
+  }),
 };
 
 export default schema;

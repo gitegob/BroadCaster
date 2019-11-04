@@ -8,9 +8,13 @@ chai.use(chaiHttp);
 chai.should();
 
 describe('Signup tests', () => {
-  after('delete a user', (done) => {
+  after('delete users', (done) => {
     users.splice(
       users.indexOf(users.find((el) => el.email === mockData.benSignup.email)),
+      1,
+    );
+    users.splice(
+      users.indexOf(users.find((el) => el.email === mockData.bruceSignup.email)),
       1,
     );
     done();
@@ -20,6 +24,22 @@ describe('Signup tests', () => {
       .request(app)
       .post('/api/v1/auth/signup')
       .send(mockData.benSignup)
+      .end((_err, res) => {
+        res.should.have.status(201);
+        res.body.should.have.property('status').eql(201);
+        res.body.should.have
+          .property('message')
+          .eql('User created successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('token');
+        done();
+      });
+  });
+  it('should signup another user', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/signup')
+      .send(mockData.bruceSignup)
       .end((_err, res) => {
         res.should.have.status(201);
         res.body.should.have.property('status').eql(201);
