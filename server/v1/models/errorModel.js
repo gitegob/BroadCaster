@@ -1,7 +1,7 @@
 
 class ServerError extends Error {
-  constructor(status) {
-    super();
+  constructor(status, message) {
+    super(message);
     this.name = this.constructor.name;
     this.status = status;
   }

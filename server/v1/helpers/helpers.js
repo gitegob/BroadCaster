@@ -28,15 +28,21 @@ class Helpers {
   }
 
   static genToken({
-    id, firstName, lastName, isAdmin,
+    id, firstName, lastName, email, isAdmin,
   }) {
     return jwt.sign({
-      id, firstName, lastName, isAdmin,
+      id, firstName, lastName, email, isAdmin,
     }, process.env.JWT_KEY);
   }
 
-  static serverError(status) {
-    throw new ServerError(status);
+  static serverError(status, message) {
+    throw new ServerError(status, message);
+  }
+
+
+  static setId(array) {
+    if (array.length < 1) return array.length + 1;
+    return array[array.length - 1].id + 1;
   }
 }
 

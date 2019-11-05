@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import schema from '../models/schema';
 import Helpers from '../helpers/helpers';
 import { users } from '../data/data';
 
 
 class Middleware {
-
   static validateSignup(req, res, next) {
     const {
       firstName, lastName, email, password, userName, phone,
@@ -48,6 +48,31 @@ class Middleware {
         Helpers.sendError(res, 401, 'Incorrect password');
       } else next();
     }
+  }
+
+  static auth(req, res, next) {
+    const { token } = req.headers;
+    if (!token) {
+      Helpers.sendError(res, 401, 'Please log in or signup first');
+    } else {
+      const decoded = jwt.verify(token, process.env.JWT_KEY);
+      if (!users.find((el) => el.email === decoded.email)) {
+        Helpers.sendError(res, 401, 'Invalid token');
+      } else {
+        req.payload = decoded;
+        next();
+      }
+    }
+  }
+
+  static validateRecord(req, res, next) {
+    const {
+      title, type, location, comment,
+    } = req.body;
+    const { error } = schema.recordSchema.validate({
+      title, type, location, comment,
+    });
+    Helpers.checkJoiError(error, res, next);
   }
 }
 

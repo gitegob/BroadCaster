@@ -1,6 +1,8 @@
 import ServerError from '../models/errorModel';
+import Helpers from '../helpers/helpers';
 
 const serverError = (req, res) => {
-  throw new ServerError(req.body.status);
+  const { status } = req.body;
+  if (status === 400) { Helpers.serverError(status, 'Syntax error in your input'); } else Helpers.serverError(status, 'Internal server error');
 };
 export default serverError;

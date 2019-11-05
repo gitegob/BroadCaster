@@ -38,7 +38,7 @@ describe('App tests', () => {
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('Syntax error, Please double check your input');
+        res.body.should.have.property('error').eql('SERVER DOWN!: Syntax error in your input');
         done();
       });
   });
@@ -51,7 +51,7 @@ describe('App tests', () => {
         res.should.have.status(500);
         res.body.should.be.a('object');
         res.body.should.have.property('status').eql(500);
-        res.body.should.have.property('error').eql('OOPS! SERVER DOWN!');
+        res.body.should.have.property('error').eql('SERVER DOWN!: Internal server error');
         done();
       });
   });
