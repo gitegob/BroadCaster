@@ -9,14 +9,7 @@ chai.should();
 
 describe('Signup tests', () => {
   after('delete users', (done) => {
-    users.splice(
-      users.indexOf(users.find((el) => el.email === mockData.benSignup.email)),
-      1,
-    );
-    users.splice(
-      users.indexOf(users.find((el) => el.email === mockData.bruceSignup.email)),
-      1,
-    );
+    users.length = 0;
     done();
   });
   it('should signup a user', (done) => {

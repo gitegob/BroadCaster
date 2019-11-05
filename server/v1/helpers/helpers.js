@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import ServerError from '../models/errorModel';
+import { records } from '../data/data';
 
 class Helpers {
   static sendSuccess(res, status, message, data) {
@@ -39,10 +40,17 @@ class Helpers {
     throw new ServerError(status, message);
   }
 
-
   static setId(array) {
     if (array.length < 1) return array.length + 1;
     return array[array.length - 1].id + 1;
+  }
+
+  static getUserRecordsByType(res, authorEmail, type) {
+    const result = [];
+    records.forEach((record) => {
+      if (record.authorEmail === authorEmail && record.type === type) result.push(record);
+    });
+    Helpers.sendSuccess(res, 200, 'Records fetched successfully', { records: result });
   }
 }
 

@@ -1,14 +1,14 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import fs from 'fs';
 import app from '../app';
 import mockData from './mockData';
+import { users, records } from '../v1/data/data';
 
 chai.use(chaiHttp);
 chai.should();
 
 describe('Creating a record', () => {
-  before('Sign up an employee', (done) => {
+  before('Sign up a user', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .send(mockData.benSignup)
@@ -17,13 +17,21 @@ describe('Creating a record', () => {
         done();
       });
   });
+  after('delete users', (done) => {
+    users.length = 0;
+    done();
+  });
+  after('delete records', (done) => {
+    records.length = 0;
 
+    done();
+  });
 
   it('should create a new record', (done) => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.benToken)
-      .send(mockData.newRecord)
+      .send(mockData.newIntRecord)
       .end((err, res) => {
         res.should.have.status(201);
         res.should.have.property('body');
@@ -31,7 +39,7 @@ describe('Creating a record', () => {
         res.body.should.have.property('message').eql('Record created successfully');
         res.body.should.have.property('data');
         res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
+        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorEmail', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
         done();
       });
   });
@@ -53,7 +61,7 @@ describe('Creating a record', () => {
   it('Should not create a record if not logged in or signed up', (done) => {
     chai.request(app)
       .post('/api/v1/records')
-      .send(mockData.newRecordInc)
+      .send(mockData.newIntRecord)
       .end((err, res) => {
         res.should.have.status(401);
         res.should.have.property('body');
@@ -66,7 +74,7 @@ describe('Creating a record', () => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.invalidToken)
-      .send(mockData.newRecord)
+      .send(mockData.newIntRecord)
       .end((err, res) => {
         res.should.have.status(500);
         res.should.have.property('body');
@@ -79,7 +87,7 @@ describe('Creating a record', () => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.nonExistToken)
-      .send(mockData.newRecord)
+      .send(mockData.newIntRecord)
       .end((err, res) => {
         res.should.have.status(401);
         res.should.have.property('body');
