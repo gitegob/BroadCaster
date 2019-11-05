@@ -3,7 +3,9 @@
     "es6": true,
     "node": true
   },
-  "extends": ["airbnb-base"],
+  "extends": [
+    "airbnb-base"
+  ],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -14,6 +16,7 @@
   },
   "rules": {
     "no-unused-vars": "off",
-    "no-confusing-arrow": "off"
+    "no-confusing-arrow": "off",
+    "no-restricted-globals": "off"
   }
 }

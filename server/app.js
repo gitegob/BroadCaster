@@ -1,6 +1,5 @@
 import express from 'express';
 import { json, urlencoded } from 'body-parser';
-import morgan from 'morgan';
 import { config } from 'dotenv';
 import Helpers from './v1/helpers/helpers';
 import serverError from './v1/controllers/serverController';
@@ -12,7 +11,6 @@ config();
 const app = express();
 const port = process.env.PORT || 3001;
 
-app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
 app.use(json());
 app.use(
