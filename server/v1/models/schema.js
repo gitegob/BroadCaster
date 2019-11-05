@@ -22,7 +22,7 @@ const schema = {
   recordSchema: Joi.object({
     title: Joi.string().min(5).max(50).trim()
       .required(),
-    type: Joi.valid('Red-flag', 'Intervention').required(),
+    type: Joi.valid('red-flag', 'intervention').required(),
     location: Joi.string().trim().regex(/^(-?\d+(\.\d+)?),\s*(-?\d+(\.\d+)?)$/)
       .required(),
     comment: Joi.string().min(20).trim()

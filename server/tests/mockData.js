@@ -46,14 +46,20 @@ const mockData = {
     email: 'bengisa  @gmail.com',
     password: 'Password@123',
   },
-  newRecord: {
+  newIntRecord: {
     title: 'Corruption somewhere',
-    type: 'Intervention',
+    type: 'intervention',
+    location: '22.6789,11.56890',
+    comment: 'There is corruption in my neighborhood and it has got to stop',
+  },
+  newRedRecord: {
+    title: 'Corruption somewhere',
+    type: 'red-flag',
     location: '22.6789,11.56890',
     comment: 'There is corruption in my neighborhood and it has got to stop',
   },
   newRecordInc: {
-    type: 'Intervention',
+    type: 'intervention',
     location: '22.6789,11.56890',
     comment: 'There is corruption in my neighborhood and it has got to stop',
   },
