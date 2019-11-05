@@ -74,6 +74,12 @@ class Middleware {
     });
     Helpers.checkJoiError(error, res, next);
   }
+
+  static validateParams(req, res, next) {
+    const { recordID } = req.params;
+    if (recordID && (isNaN(recordID) || Number(recordID) > 10000)) Helpers.sendError(res, 400, 'Invalid parameters');
+    else next();
+  }
 }
 
 export default Middleware;

@@ -36,6 +36,14 @@ class RecordController {
   static getInterventions(req, res) {
     Helpers.getUserRecordsByType(res, req.payload.email, 'intervention');
   }
+
+  static getSingle(req, res) {
+    const { recordID } = req.params;
+    const { email } = req.payload;
+    const record = records.find((rec) => `${rec.id}` === recordID && rec.authorEmail === email);
+    if (record) Helpers.sendSuccess(res, 200, 'Record fetched successfully', { record });
+    else Helpers.sendError(res, 404, 'Record not found', { record });
+  }
 }
 
 export default RecordController;
