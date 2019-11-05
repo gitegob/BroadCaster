@@ -46,6 +46,19 @@ const mockData = {
     email: 'bengisa  @gmail.com',
     password: 'Password@123',
   },
+  newRecord: {
+    title: 'Corruption somewhere',
+    type: 'Intervention',
+    location: '22.6789,11.56890',
+    comment: 'There is corruption in my neighborhood and it has got to stop',
+  },
+  newRecordInc: {
+    type: 'Intervention',
+    location: '22.6789,11.56890',
+    comment: 'There is corruption in my neighborhood and it has got to stop',
+  },
+  invalidToken: 'eyhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjg4MzQ4MX0.WviyBGlvr1y0KNfcxwDwjtw8JwmJ8GCe6N5wk-OPSgk',
+  nonExistToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3ROYW1lIjoiQmVuIiwibGFzdE5hbWUiOiJHaXNhIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU3Mjk1NjY3NH0.8Rt05JoON0ayCTtetWWelYh4q9sz-NLLZJOUEqJ79Ig',
 };
 
 export default mockData;

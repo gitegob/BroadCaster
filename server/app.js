@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 import Helpers from './v1/helpers/helpers';
 import serverError from './v1/controllers/serverController';
 import userRoutes from './v1/routes/userRoutes';
+import recordRoutes from './v1/routes/recordRoutes';
 
 config();
 
@@ -12,6 +13,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(morgan('dev'));
+app.use('/uploads', express.static('uploads'));
 app.use(json());
 app.use(
   urlencoded({
@@ -24,21 +26,13 @@ app.get('/', (req, res) => {
 app.post('/server', serverError);
 
 app.use('/api/v1/auth', userRoutes);
+app.use('/api/v1/records', recordRoutes);
 app.use('/*', (_req, res) => {
   Helpers.sendError(res, 404, 'Not Found');
 });
 
 app.use((error, _req, res, _next) => {
-  if (error.status === 400) {
-    Helpers.sendError(
-      res,
-      error.status,
-      'Syntax error, Please double check your input',
-    );
-  } else {
-    Helpers.sendError(res, error.status || 500, 'OOPS! SERVER DOWN!');
-    process.stdout.write(error);
-  }
+  Helpers.sendError(res, error.status || 500, `SERVER DOWN!: ${error.message}`);
 });
 
 app.listen(port, () => {

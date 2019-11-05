@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import mockData from '../tests/mockData';
+import mockData from './mockData';
 import { users } from '../v1/data/data';
 import UserController from '../v1/controllers/userController';
 
