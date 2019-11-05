@@ -18,49 +18,8 @@ describe('Creating a record', () => {
       });
   });
 
-  it('should create a new record with image', (done) => {
-    chai.request(app)
-      .post('/api/v1/records')
-      .set('Content-Type', 'multipart/form-data')
-      .set('token', mockData.benToken)
-      .field(mockData.newRecord)
-      .attach('media',
-        fs.readFileSync('/home/gbrian/Desktop/Andela/ADC 13/BroadCaster/UI/images/kevin.jpg'),
-        'kevin.jpg')
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(201);
-        res.body.should.have.property('message').eql('Record created successfully');
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
-        done();
-      });
-  });
 
-  it('should not save an invalid file', (done) => {
-    chai.request(app)
-      .post('/api/v1/records')
-      .set('Content-Type', 'multipart/form-data')
-      .set('token', mockData.benToken)
-      .field(mockData.newRecord)
-      .attach('media',
-        fs.readFileSync('/home/gbrian/Desktop/Andela/ADC 13/BroadCaster/UI/pages/contact.html'),
-        'kevin.jpg')
-      .end((err, res) => {
-        res.should.have.status(201);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(201);
-        res.body.should.have.property('message').eql('Record created successfully');
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
-        done();
-      });
-  });
-
-  it('should create a new record with no image', (done) => {
+  it('should create a new record', (done) => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.benToken)
