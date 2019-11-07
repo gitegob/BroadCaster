@@ -49,9 +49,7 @@ class RecordController {
     const {
       title, type, location, comment,
     } = req.body;
-    const { id } = req.payload;
-    const { recordID } = req.params;
-    const record = Helpers.findUserRecord(recordID, id);
+    const record = Helpers.findUserRecord(req.params.recordID, req.payload.id);
     if (!record) Helpers.sendError(res, 404, 'Record not found');
     else if (record) {
       if (record.status === 'pending') {
