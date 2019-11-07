@@ -11,6 +11,6 @@ router.get('/red-flags', Middleware.auth, RecordController.getRedFlags);
 router.get('/interventions', Middleware.auth, RecordController.getInterventions);
 router.get('/:recordID', Middleware.auth, Middleware.validateParams, RecordController.getARecord);
 router.patch('/:recordID', Middleware.auth, Middleware.validateParams, Middleware.validateRecord, RecordController.updateARecord);
-
+router.delete('/:recordID', Middleware.auth, Middleware.validateParams, RecordController.deleteARecord);
 
 export default router;

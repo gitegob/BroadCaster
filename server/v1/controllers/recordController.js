@@ -60,6 +60,16 @@ class RecordController {
       } else Helpers.sendError(res, 403, 'Record cannot be edited');
     } else Helpers.sendError(res, 404, 'Record not found');
   }
+
+  static deleteARecord(req, res) {
+    const record = Helpers.findUserRecord(req.params.recordID, req.payload.id);
+    if (record) {
+      if (record.status === 'pending') {
+        records.splice(records.indexOf(record), 1);
+        Helpers.sendSuccess(res, 200, 'Record deleted successfully');
+      } else Helpers.sendError(res, 403, 'Record cannot be deleted');
+    } else Helpers.sendError(res, 404, 'Record not found');
+  }
 }
 
 export default RecordController;
