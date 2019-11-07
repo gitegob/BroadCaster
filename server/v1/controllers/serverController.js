@@ -1,4 +1,3 @@
-import ServerError from '../models/errorModel';
 import Helpers from '../helpers/helpers';
 
 const serverError = (req, res) => {

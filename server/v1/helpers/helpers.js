@@ -1,5 +1,4 @@
 import jwt from 'jsonwebtoken';
-import ServerError from '../models/errorModel';
 import { records } from '../data/data';
 
 class Helpers {
@@ -37,7 +36,10 @@ class Helpers {
   }
 
   static serverError(status, message) {
-    throw new ServerError(status, message);
+    const error = new Error();
+    error.status = status;
+    error.message = message;
+    throw error;
   }
 
   static setId(array) {
