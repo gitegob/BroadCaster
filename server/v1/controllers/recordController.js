@@ -53,12 +53,14 @@ class RecordController {
     const { recordID } = req.params;
     const record = Helpers.findUserRecord(recordID, id);
     if (!record) Helpers.sendError(res, 404, 'Record not found');
-    else if (record && record.status === 'pending') {
-      record.title = title || record.title;
-      record.type = type || record.type;
-      record.location = location || record.location;
-      record.comment = comment || record.comment;
-      Helpers.sendSuccess(res, 200, 'Record edited successfully', { record });
+    else if (record) {
+      if (record.status === 'pending') {
+        record.title = title || record.title;
+        record.type = type || record.type;
+        record.location = location || record.location;
+        record.comment = comment || record.comment;
+        Helpers.sendSuccess(res, 200, 'Record edited successfully', { record });
+      } else Helpers.sendError(res, 403, 'Record cannot be edited');
     } else Helpers.sendError(res, 403, 'Record cannot be edited');
   }
 }
