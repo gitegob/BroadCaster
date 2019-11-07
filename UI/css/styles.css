@@ -370,7 +370,7 @@ iframe {
 .record .resolved {
   color: green;
 }
-.record .unresolved {
+.record .pending {
   color: orange;
 }
 .record .rejected {
