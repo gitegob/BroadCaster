@@ -2,7 +2,6 @@ import express from 'express';
 import { json, urlencoded } from 'body-parser';
 import { config } from 'dotenv';
 import Helpers from './v1/helpers/helpers';
-import serverError from './v1/controllers/serverController';
 import userRoutes from './v1/routes/userRoutes';
 import recordRoutes from './v1/routes/recordRoutes';
 
@@ -21,7 +20,6 @@ app.use(
 app.get('/', (req, res) => {
   Helpers.sendSuccess(res, 200, 'Welcome to BroadCaster');
 });
-app.post('/server', serverError);
 
 app.use('/api/v1/auth', userRoutes);
 app.use('/api/v1/records', recordRoutes);

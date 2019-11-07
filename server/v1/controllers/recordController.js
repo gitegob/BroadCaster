@@ -20,29 +20,46 @@ class RecordController {
     Helpers.sendSuccess(res, 201, 'Record created successfully', { record: newRecord });
   }
 
-  static getAll(req, res) {
-    const { email } = req.payload;
+  static getRecords(req, res) {
+    const { id } = req.payload;
     const result = [];
     records.forEach((record) => {
-      if (record.authorEmail === email) result.push(record);
+      if (`${record.authorId}` === `${id}`) result.push(record);
     });
     Helpers.sendSuccess(res, 200, 'Records fetched successfully', { records: result });
   }
 
   static getRedFlags(req, res) {
-    Helpers.getUserRecordsByType(res, req.payload.email, 'red-flag');
+    Helpers.sendUserRecordsByType(res, req.payload.id, 'red-flag');
   }
 
   static getInterventions(req, res) {
-    Helpers.getUserRecordsByType(res, req.payload.email, 'intervention');
+    Helpers.sendUserRecordsByType(res, req.payload.id, 'intervention');
   }
 
-  static getSingle(req, res) {
+  static getARecord(req, res) {
     const { recordID } = req.params;
-    const { email } = req.payload;
-    const record = records.find((rec) => `${rec.id}` === recordID && rec.authorEmail === email);
+    const { id } = req.payload;
+    const record = Helpers.findUserRecord(recordID, id);
     if (record) Helpers.sendSuccess(res, 200, 'Record fetched successfully', { record });
-    else Helpers.sendError(res, 404, 'Record not found', { record });
+    else Helpers.sendError(res, 404, 'Record not found');
+  }
+
+  static updateARecord(req, res) {
+    const {
+      title, type, location, comment,
+    } = req.body;
+    const { id } = req.payload;
+    const { recordID } = req.params;
+    const record = Helpers.findUserRecord(recordID, id);
+    if (!record) Helpers.sendError(res, 404, 'Record not found');
+    else if (record && record.status === 'pending') {
+      record.title = title || record.title;
+      record.type = type || record.type;
+      record.location = location || record.location;
+      record.comment = comment || record.comment;
+      Helpers.sendSuccess(res, 200, 'Record edited successfully', { record });
+    } else Helpers.sendError(res, 403, 'Record cannot be edited');
   }
 }
 

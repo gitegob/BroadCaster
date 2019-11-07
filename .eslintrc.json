@@ -17,6 +17,7 @@
   "rules": {
     "no-unused-vars": "off",
     "no-confusing-arrow": "off",
-    "no-restricted-globals": "off"
+    "no-restricted-globals": "off",
+    "consistent-return": "off"
   }
 }

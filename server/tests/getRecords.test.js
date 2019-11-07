@@ -65,7 +65,7 @@ describe('Fetching records', () => {
   });
   it('should fetch all records by a user', (done) => {
     chai.request(app)
-      .get('/api/v1/records/all')
+      .get('/api/v1/records')
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(200);
@@ -93,7 +93,7 @@ describe('Fetching records', () => {
         done();
       });
   });
-  it('should fetch all red-flag records by a user', (done) => {
+  it('should fetch all intervention records by a user', (done) => {
     chai.request(app)
       .get('/api/v1/records/interventions')
       .set('token', mockData.benToken)
@@ -110,7 +110,7 @@ describe('Fetching records', () => {
   });
   it('should fetch a single record by a user', (done) => {
     chai.request(app)
-      .get(`/api/v1/records/all/${mockData.recordId1}`)
+      .get(`/api/v1/records/${mockData.recordId1}`)
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(200);
@@ -125,7 +125,7 @@ describe('Fetching records', () => {
   });
   it('should not fetch another user\'s record', (done) => {
     chai.request(app)
-      .get(`/api/v1/records/all/${mockData.recordId2}`)
+      .get(`/api/v1/records/${mockData.recordId2}`)
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(404);
@@ -137,7 +137,7 @@ describe('Fetching records', () => {
   });
   it('should not fetch a non-existing record', (done) => {
     chai.request(app)
-      .get('/api/v1/records/all/2344')
+      .get('/api/v1/records/2344')
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(404);
@@ -149,7 +149,7 @@ describe('Fetching records', () => {
   });
   it('should not fetch a record with invalid parameters', (done) => {
     chai.request(app)
-      .get('/api/v1/records/all/2344657')
+      .get('/api/v1/records/2344657')
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(400);

@@ -75,6 +75,18 @@ class Middleware {
     Helpers.checkJoiError(error, res, next);
   }
 
+  static validateUpdate(req, res, next) {
+    const {
+      title, type, location, comment,
+    } = req.body;
+    const { error } = schema.recordSchema.validate({
+      title, type, location, comment,
+    });
+    if (error && error.details[0].type === 'string.pattern.base') Helpers.checkJoiError(error, res, next);
+    else next();
+  }
+
+
   static validateParams(req, res, next) {
     const { recordID } = req.params;
     if (recordID && (isNaN(recordID) || Number(recordID) > 10000)) Helpers.sendError(res, 400, 'Invalid parameters');
