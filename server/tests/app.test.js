@@ -32,7 +32,7 @@ describe('App tests', () => {
   it('should display a syntax error message', (done) => {
     chai
       .request(app)
-      .post('/server')
+      .post('/api/v1/auth/error')
       .send({ status: 400 })
       .end((_err, res) => {
         res.should.have.status(400);
@@ -45,7 +45,7 @@ describe('App tests', () => {
   it('should display a server error message', (done) => {
     chai
       .request(app)
-      .post('/server')
+      .post('/api/v1/auth/error')
       .send({ status: 500 })
       .end((_err, res) => {
         res.should.have.status(500);

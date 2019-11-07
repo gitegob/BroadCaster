@@ -72,7 +72,10 @@ class Middleware {
     const { error } = schema.recordSchema.validate({
       title, type, location, comment,
     });
-    Helpers.checkJoiError(error, res, next);
+    if (req.method === 'PATCH') {
+      if (error && error.details[0].type === 'string.pattern.base') Helpers.checkJoiError(error, res, next);
+      else next();
+    } else Helpers.checkJoiError(error, res, next);
   }
 
   static validateParams(req, res, next) {

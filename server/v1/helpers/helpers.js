@@ -45,12 +45,16 @@ class Helpers {
     return array[array.length - 1].id + 1;
   }
 
-  static getUserRecordsByType(res, authorEmail, type) {
+  static sendUserRecordsByType(res, id, type) {
     const result = [];
     records.forEach((record) => {
-      if (record.authorEmail === authorEmail && record.type === type) result.push(record);
+      if (`${record.authorId}` === `${id}` && record.type === type) result.push(record);
     });
     Helpers.sendSuccess(res, 200, 'Records fetched successfully', { records: result });
+  }
+
+  static findUserRecord(recordId, authorId) {
+    return records.find((rec) => (`${rec.id}` === recordId) && (`${rec.authorId}` === `${authorId}`));
   }
 }
 

@@ -10,7 +10,7 @@ class Record {
     this.title = title;
     this.type = type;
     this.location = location;
-    this.status = 'unresolved';
+    this.status = 'pending';
     this.mediaUrl = mediaUrl;
     this.comment = comment;
   }

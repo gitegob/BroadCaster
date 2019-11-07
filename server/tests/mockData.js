@@ -52,6 +52,11 @@ const mockData = {
     location: '22.6789,11.56890',
     comment: 'There is corruption in my neighborhood and it has got to stop',
   },
+  newRecordEdited: {
+    title: 'Corruption somewhere edited',
+    location: '2.6789,1.56890',
+    comment: 'There is corruption in my neighborhood and it has got to stop edited',
+  },
   newRedRecord: {
     title: 'Corruption somewhere',
     type: 'red-flag',
