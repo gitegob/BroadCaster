@@ -18,6 +18,7 @@
     "no-unused-vars": "off",
     "no-confusing-arrow": "off",
     "no-restricted-globals": "off",
+    "no-undef": "off",
     "consistent-return": "off"
   }
 }

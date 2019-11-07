@@ -16,7 +16,7 @@ const setStatusColor = (param) => {
   if (param.value === 'resolved') {
     param.style.color = 'green';
   }
-  if (param.value === 'unresolved') {
+  if (param.value === 'pending') {
     param.style.color = 'orange';
   }
   if (param.value === 'rejected') {
@@ -49,8 +49,7 @@ document.querySelector('.geolocate').addEventListener('click', () => {
       };
     });
   } else {
-    document.querySelector('.coordinates').innerHTML =
-      'Geolocation is not supported by this browser.';
+    document.querySelector('.coordinates').innerHTML =      'Geolocation is not supported by this browser.';
     toggleShow();
   }
 });
