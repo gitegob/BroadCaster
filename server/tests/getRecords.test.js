@@ -1,8 +1,12 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import { config } from 'dotenv';
 import app from '../app';
 import mockData from './mockData';
 import { users, records } from '../v1/data/data';
+import Admin from '../v1/models/adminModel';
+
+config();
 
 chai.use(chaiHttp);
 chai.should();
@@ -26,7 +30,24 @@ describe('Fetching records', () => {
         done();
       });
   });
-  before('create a new record', (done) => {
+  before('Create the admin', (done) => {
+    const {
+      firstName, lastName, email, password, userName, phone,
+    } = mockData.admin;
+    const admin = new Admin(firstName, lastName, email, password, userName, phone);
+    users.push(admin);
+    done();
+  });
+  before('Log in the admin', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signin')
+      .send(mockData.adminLogin)
+      .end((err, res) => {
+        mockData.adminToken = res.body.data.token;
+        done();
+      });
+  });
+  before('create a new intervention record', (done) => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.benToken)
@@ -36,7 +57,7 @@ describe('Fetching records', () => {
         done();
       });
   });
-  before('create a new record', (done) => {
+  before('create a new red-flag record', (done) => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.benToken)
@@ -45,7 +66,7 @@ describe('Fetching records', () => {
         done();
       });
   });
-  before('create another record', (done) => {
+  before('create another red-flag record', (done) => {
     chai.request(app)
       .post('/api/v1/records')
       .set('token', mockData.bruceToken)
@@ -78,10 +99,40 @@ describe('Fetching records', () => {
         done();
       });
   });
+  it('Admin should fetch all records by all users', (done) => {
+    chai.request(app)
+      .get('/api/v1/records')
+      .set('token', mockData.adminToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Records fetched successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('records');
+        res.body.data.records.should.be.a('Array');
+        done();
+      });
+  });
   it('should fetch all red-flag records by a user', (done) => {
     chai.request(app)
       .get('/api/v1/records/red-flags')
       .set('token', mockData.benToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Records fetched successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('records');
+        res.body.data.records.should.be.a('Array');
+        done();
+      });
+  });
+  it('Admin should fetch all red-flag records by all users', (done) => {
+    chai.request(app)
+      .get('/api/v1/records/red-flags')
+      .set('token', mockData.adminToken)
       .end((err, res) => {
         res.should.have.status(200);
         res.should.have.property('body');
@@ -112,6 +163,21 @@ describe('Fetching records', () => {
     chai.request(app)
       .get(`/api/v1/records/${mockData.recordId1}`)
       .set('token', mockData.benToken)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(200);
+        res.body.should.have.property('message').eql('Record fetched successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('record');
+        res.body.data.record.should.be.a('Object');
+        done();
+      });
+  });
+  it('Admin should fetch a single record by any user', (done) => {
+    chai.request(app)
+      .get(`/api/v1/records/${mockData.recordId1}`)
+      .set('token', mockData.adminToken)
       .end((err, res) => {
         res.should.have.status(200);
         res.should.have.property('body');

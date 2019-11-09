@@ -1,4 +1,16 @@
+import { config } from 'dotenv';
+
+config();
+
 const mockData = {
+  admin: {
+    firstName: process.env.A_FNAME,
+    lastName: process.env.A_LNAME,
+    email: process.env.A_EMAIL,
+    password: process.env.A_PASSWORD,
+    userName: process.env.A_USERNAME,
+    phone: process.env.A_PHONE,
+  },
   benSignup: {
     firstName: 'Ben',
     lastName: 'Gisa',
@@ -34,6 +46,10 @@ const mockData = {
     email: 'bengisa@gmail.com',
     password: 'Password@123',
   },
+  adminLogin: {
+    email: process.env.A_EMAIL,
+    password: process.env.A_PASSWORD,
+  },
   benLoginNotFound: {
     email: 'gisabena@gmail.com',
     password: 'Password@123',
@@ -54,6 +70,13 @@ const mockData = {
   },
   newRecordEdited: {
     title: 'Corruption somewhere edited',
+    type: 'intervention',
+    location: '2.6789,1.56890',
+    comment: 'There is corruption in my neighborhood and it has got to stop edited',
+  },
+  newRecordEditedWrong: {
+    title: 'Corruption somewhere edited',
+    type: 'foo',
     location: '2.6789,1.56890',
     comment: 'There is corruption in my neighborhood and it has got to stop edited',
   },
