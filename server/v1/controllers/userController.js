@@ -8,8 +8,7 @@ class UserController {
     const {
       firstName, lastName, email, password, userName, phone,
     } = req.body;
-    const hash = bcrypt.hashSync(password, 10);
-    const newUser = new User(firstName, lastName, email, hash, userName, phone);
+    const newUser = new User(firstName, lastName, email, password, userName, phone);
     Helpers.sendSuccess(res, 201, 'User created successfully', {
       token: Helpers.genToken(newUser),
     });

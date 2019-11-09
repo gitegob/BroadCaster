@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { users } from '../data/data';
 import Helpers from '../helpers/helpers';
 
@@ -7,7 +8,7 @@ class UserModel {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
-    this.password = password;
+    this.password = bcrypt.hashSync(password, 10);
     this.userName = userName;
     this.phone = phone;
     this.isAdmin = false;

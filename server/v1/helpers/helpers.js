@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { records } from '../data/data';
+import transporter from '../config/mailerConfig';
 
 class Helpers {
   static sendSuccess(res, status, message, data) {
@@ -47,15 +48,23 @@ class Helpers {
     return array[array.length - 1].id + 1;
   }
 
-  static sendUserRecordsByType(res, id, type) {
+  static sendUserRecordsByType(res, id, isAdmin, type) {
     const result = [];
-    records.forEach((record) => {
-      if (`${record.authorId}` === `${id}` && record.type === type) result.push(record);
-    });
+    if (isAdmin) {
+      records.forEach((record) => {
+        if (record.type === type) result.push(record);
+      });
+    } else {
+      records.forEach((record) => {
+        if (`${record.authorId}` === `${id}` && record.type === type) result.push(record);
+      });
+    }
+
     Helpers.sendSuccess(res, 200, 'Records fetched successfully', { records: result });
   }
 
-  static findUserRecord(recordId, authorId) {
+  static findUserRecord(recordId, isAdmin, authorId) {
+    if (isAdmin) return records.find((rec) => (`${rec.id}` === recordId));
     return records.find((rec) => (`${rec.id}` === recordId) && (`${rec.authorId}` === `${authorId}`));
   }
 }

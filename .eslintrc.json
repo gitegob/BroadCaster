@@ -1,7 +1,8 @@
 {
   "env": {
     "es6": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "extends": [
     "airbnb-base"
@@ -18,7 +19,6 @@
     "no-unused-vars": "off",
     "no-confusing-arrow": "off",
     "no-restricted-globals": "off",
-    "no-undef": "off",
     "consistent-return": "off"
   }
 }

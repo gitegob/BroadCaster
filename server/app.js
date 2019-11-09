@@ -4,6 +4,8 @@ import { config } from 'dotenv';
 import Helpers from './v1/helpers/helpers';
 import userRoutes from './v1/routes/userRoutes';
 import recordRoutes from './v1/routes/recordRoutes';
+import Admin from './v1/models/adminModel';
+import { users } from './v1/data/data';
 
 config();
 
@@ -32,6 +34,11 @@ app.use((error, _req, res, _next) => {
 });
 
 app.listen(port, () => {
+  const {
+    A_FNAME, A_LNAME, A_EMAIL, A_PASSWORD, A_USERNAME, A_PHONE,
+  } = process.env;
+  const admin = new Admin(A_FNAME, A_LNAME, A_EMAIL, A_PASSWORD, A_USERNAME, A_PHONE);
+  users.push(admin);
   process.stdout.write(`Connected on ${port}`);
 });
 

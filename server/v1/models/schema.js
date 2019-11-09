@@ -28,6 +28,9 @@ const schema = {
     comment: Joi.string().min(20).trim()
       .required(),
   }),
+  statusSchema: Joi.object({
+    status: Joi.valid('pending', 'under investigation', 'resolved', 'rejected').required(),
+  }),
 };
 
 

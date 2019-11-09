@@ -65,6 +65,11 @@ class Middleware {
     }
   }
 
+  static adminAuth(req, res, next) {
+    if (req.payload.isAdmin) next();
+    else Helpers.sendError(res, 403, 'Unauthorized');
+  }
+
   static validateRecord(req, res, next) {
     const {
       title, type, location, comment,
@@ -73,7 +78,7 @@ class Middleware {
       title, type, location, comment,
     });
     if (req.method === 'PATCH') {
-      if (error && error.details[0].type === 'string.pattern.base') Helpers.checkJoiError(error, res, next);
+      if (error && (error.details[0].type === 'string.pattern.base' || error.details[0].type === 'any.only')) Helpers.checkJoiError(error, res, next);
       else next();
     } else Helpers.checkJoiError(error, res, next);
   }
@@ -82,6 +87,12 @@ class Middleware {
     const { recordID } = req.params;
     if (recordID && (isNaN(recordID) || Number(recordID) > 10000)) Helpers.sendError(res, 400, 'Invalid parameters');
     else next();
+  }
+
+  static validateStatus(req, res, next) {
+    const { status } = req.body;
+    const { error } = schema.statusSchema.validate({ status });
+    Helpers.checkJoiError(error, res, next);
   }
 }
 
