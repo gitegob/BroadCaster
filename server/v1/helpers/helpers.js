@@ -67,6 +67,17 @@ class Helpers {
     if (isAdmin) return records.find((rec) => (`${rec.id}` === recordId));
     return records.find((rec) => (`${rec.id}` === recordId) && (`${rec.authorId}` === `${authorId}`));
   }
+
+  static async sendEmail(to, name, title, status) {
+    const mailOptions = {
+      from: '"BroadCaster" <noreply@broadcaster.com>',
+      to,
+      subject: 'Update from Broadcaster',
+      html: `<b>Hi ${name}</b><br>
+      Your record with title <b style="color:#333333;">${title}</b> status has been set to <b style="color:#333333;text-transform:uppercase;">${status}</b>`,
+    };
+    await transporter.sendMail(mailOptions);
+  }
 }
 
 export default Helpers;

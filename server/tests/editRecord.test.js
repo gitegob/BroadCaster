@@ -67,7 +67,7 @@ describe('Editing a record', () => {
         res.body.should.have.property('message').eql('Record edited successfully');
         res.body.should.have.property('data');
         res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorEmail', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
+        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorName', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
         done();
       });
   });
