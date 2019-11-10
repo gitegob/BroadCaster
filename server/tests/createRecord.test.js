@@ -13,8 +13,6 @@ describe('Creating a record', () => {
       .post('/api/v1/auth/signup')
       .send(mockData.benSignup)
       .end((err, res) => {
-        console.log(res.body);
-
         mockData.benToken = res.body.data.token;
         done();
       });

@@ -13,7 +13,7 @@ class RecordController {
       newRecord = new Record(id, firstName, lastName, title, type, location, 'noMedia', comment);
     } else {
       const { path: mediaUrl } = req.file;
-      newRecord = new Record(id, email, title, type, location, mediaUrl, comment);
+      newRecord = new Record(id, firstName, lastName, title, type, location, mediaUrl, comment);
     }
     records.push(newRecord);
     Helpers.sendSuccess(res, 201, 'Record created successfully', { record: newRecord });
@@ -70,13 +70,14 @@ class RecordController {
     const record = records.find((rec) => `${rec.id}` === `${recordID}`);
     if (record) {
       record.status = status;
-      Helpers.sendSuccess(res, 200, 'Record status updated successfully', { status: record.status });
       const {
         authorId, title: recordTitle, authorName, status: recordStatus,
       } = record;
       const author = users.find((user) => user.id === authorId);
       const { email, phone } = author;
+      Helpers.sendSms(phone, authorName, recordTitle, recordStatus);
       Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
+      Helpers.sendSuccess(res, 200, 'Record status updated successfully', { status: record.status });
     } else Helpers.sendError(res, 404, 'Record not found');
   }
 
