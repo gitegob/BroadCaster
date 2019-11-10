@@ -17,7 +17,7 @@ const mockData = {
     email: 'bengisa@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',
-    phone: '+250785721391',
+    phone: '+250739128239',
   },
   bruceSignup: {
     firstName: 'Bruce',

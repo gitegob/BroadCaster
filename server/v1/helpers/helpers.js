@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { records } from '../data/data';
 import transporter from '../config/mailerConfig';
+import nexmo from '../config/smsConfig';
 
 class Helpers {
   static sendSuccess(res, status, message, data) {
@@ -77,6 +78,13 @@ class Helpers {
       Your record with title <b style="color:#333333;">${title}</b> status has been set to <b style="color:#333333;text-transform:uppercase;">${status}</b>`,
     };
     await transporter.sendMail(mailOptions);
+  }
+
+  static async sendSms(number, name, title, status) {
+    const from = 'BroadCaster';
+    const to = number;
+    const text = `Hi ${name}, Your record with title: "${title}" has been set to "${status}"`;
+    await nexmo.message.sendSms(from, to, text);
   }
 }
 
