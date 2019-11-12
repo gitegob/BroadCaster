@@ -1,8 +1,8 @@
 const makeActive = (elements) => {
   elements.forEach((element) => {
     element.addEventListener('click', () => {
-      elements.forEach((element) => {
-        element.classList.remove('active');
+      elements.forEach((elt) => {
+        elt.classList.remove('active');
       });
       element.classList.add('active');
     });
@@ -13,14 +13,15 @@ makeActive(document.querySelectorAll('.tab-link-wrapper'));
 makeActive(document.querySelectorAll('div.page'));
 
 const setStatusColor = (param) => {
-  if (param.value === 'resolved') {
-    param.style.color = 'green';
+  const element = param;
+  if (element.value === 'resolved') {
+    element.style.color = 'green';
   }
-  if (param.value === 'pending') {
-    param.style.color = 'orange';
+  if (element.value === 'pending') {
+    element.style.color = 'orange';
   }
-  if (param.value === 'rejected') {
-    param.style.color = 'red';
+  if (element.value === 'rejected') {
+    element.style.color = 'red';
   }
 };
 document.querySelectorAll('select').forEach((element) => {
@@ -28,6 +29,15 @@ document.querySelectorAll('select').forEach((element) => {
   element.addEventListener('change', () => {
     setStatusColor(element);
   });
+});
+
+document.querySelector('a.delete').addEventListener('click', () => {
+  document.querySelector('.modal-bg').style.display = 'flex';
+  document.querySelector('body').classList.toggle('no-scroll');
+});
+document.querySelector('.close-modal').addEventListener('click', () => {
+  document.querySelector('.modal-bg').style.display = 'none';
+  document.querySelector('body').classList.toggle('no-scroll');
 });
 
 let result = 0;
@@ -49,7 +59,7 @@ document.querySelector('.geolocate').addEventListener('click', () => {
       };
     });
   } else {
-    document.querySelector('.coordinates').innerHTML =      'Geolocation is not supported by this browser.';
+    document.querySelector('.coordinates').innerHTML = 'Geolocation is not supported by this browser.';
     toggleShow();
   }
 });
