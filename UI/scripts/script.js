@@ -24,6 +24,11 @@ const setStatusColor = (param) => {
     element.style.color = 'red';
   }
 };
+
+const display = (parameter) => {
+  document.querySelector('.modal-bg').style.display = parameter;
+  document.querySelector('body').classList.toggle('no-scroll');
+}
 document.querySelectorAll('select').forEach((element) => {
   setStatusColor(element);
   element.addEventListener('change', () => {
@@ -32,12 +37,10 @@ document.querySelectorAll('select').forEach((element) => {
 });
 
 document.querySelector('a.delete').addEventListener('click', () => {
-  document.querySelector('.modal-bg').style.display = 'flex';
-  document.querySelector('body').classList.toggle('no-scroll');
+  display('flex');
 });
 document.querySelector('.close-modal').addEventListener('click', () => {
-  document.querySelector('.modal-bg').style.display = 'none';
-  document.querySelector('body').classList.toggle('no-scroll');
+  display('none');
 });
 
 let result = 0;
