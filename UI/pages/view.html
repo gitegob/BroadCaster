@@ -116,7 +116,7 @@
             <div class="status-panel">
               <div class="edit-delete">
                 <a href="edit.html" class="edit" button>Edit Record</a>
-                <a href="profile.html" class="delete" button>Delete</a>
+                <a class="delete" button>Delete</a>
               </div>
               <div class="status resolved">RESOLVED</div>
             </div>
@@ -125,11 +125,21 @@
       </div>
     </div>
   </div>
-
+  <div class="modal-bg">
+    <div class=" delete modal">
+      <center>
+        <div>Delete record?</div>
+        <br />
+        <a href="profile.html" class="confirm-delete" button>Confirm</a>
+        <span class="close-modal">+</span>
+      </center>
+    </div>
+  </div>
   <div class="footer">
     &copy; 2019 - BroadCaster &nbsp;
     <a href="contact.html">Contact us</a><span> &nbsp; </span><a href="#">API</a>
   </div>
+  <script src="../scripts/script.js"></script>
 </body>
 
 </html>
