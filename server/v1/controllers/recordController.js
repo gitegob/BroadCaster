@@ -1,20 +1,21 @@
 import Record from '../models/recordModel';
 import { users, records } from '../data/data';
 import Helpers from '../helpers/helpers';
+import upload from '../config/cloudConfig';
 
 class RecordController {
-  static createRecord(req, res) {
+  static async createRecord(req, res) {
     const { id, firstName, lastName } = req.payload;
     const {
       title, type, location, comment,
     } = req.body;
-    let newRecord;
-    if (!req.file) {
-      newRecord = new Record(id, firstName, lastName, title, type, location, 'noMedia', comment);
-    } else {
-      const { path: mediaUrl } = req.file;
-      newRecord = new Record(id, firstName, lastName, title, type, location, mediaUrl, comment);
-    }
+    if (req.files) {
+      const { media } = req.files;
+      const cloudFile = await upload(media.tempFilePath);
+      req.mediaUrl = cloudFile.url;
+    } else req.mediaUrl = 'noMedia';
+    const newRecord = new Record(id, firstName, lastName,
+      title, type, location, req.mediaUrl, comment);
     records.push(newRecord);
     Helpers.sendSuccess(res, 201, 'Record created successfully', { record: newRecord });
   }
