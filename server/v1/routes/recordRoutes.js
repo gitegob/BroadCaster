@@ -1,11 +1,16 @@
 import { Router } from 'express';
+import fileupload from 'express-fileupload';
 import RecordController from '../controllers/recordController';
 import Middleware from '../middleware/middleware';
-import upload from '../config/uploadConfig';
 
 const router = Router();
+router.use(
+  fileupload({
+    useTempFiles: true,
+  }),
+);
 
-router.post('/', Middleware.auth, upload.single('media'), Middleware.validateRecord, RecordController.createRecord);
+router.post('/', Middleware.auth, Middleware.validateRecord, RecordController.createRecord);
 router.get('/', Middleware.auth, RecordController.getRecords);
 router.get('/red-flags', Middleware.auth, RecordController.getRedFlags);
 router.get('/interventions', Middleware.auth, RecordController.getInterventions);
