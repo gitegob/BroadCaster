@@ -33,8 +33,6 @@ describe('Creating a record', () => {
       .set('token', mockData.benToken)
       .send(mockData.newIntRecord)
       .end((err, res) => {
-        console.log(res.body);
-
         res.should.have.status(201);
         res.should.have.property('body');
         res.body.should.have.property('status').eql(201);
