@@ -9,13 +9,16 @@ class RecordController {
     const {
       title, type, location, comment,
     } = req.body;
+    const mediaArr = [];
     if (req.files) {
       const { media } = req.files;
-      const cloudFile = await upload(media.tempFilePath);
-      req.mediaUrl = cloudFile.url;
-    } else req.mediaUrl = 'noMedia';
+      for (const el of media) {
+        const cloudFile = await upload(el);
+        mediaArr.push(cloudFile.url);
+      }
+    }
     const newRecord = new Record(id, firstName, lastName,
-      title, type, location, req.mediaUrl, comment);
+      title, type, location, mediaArr, comment);
     records.push(newRecord);
     Helpers.sendSuccess(res, 201, 'Record created successfully', { record: newRecord });
   }
@@ -65,7 +68,7 @@ class RecordController {
     } else Helpers.sendError(res, 404, 'Record not found');
   }
 
-  static updateStatus(req, res) {
+  static async updateStatus(req, res) {
     const { status } = req.body;
     const { recordID } = req.params;
     const record = records.find((rec) => `${rec.id}` === `${recordID}`);
@@ -76,8 +79,7 @@ class RecordController {
       } = record;
       const author = users.find((user) => user.id === authorId);
       const { email, phone } = author;
-      Helpers.sendSms(phone, authorName, recordTitle, recordStatus);
-      Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
+      await Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
       Helpers.sendSuccess(res, 200, 'Record status updated successfully', { status: record.status });
     } else Helpers.sendError(res, 404, 'Record not found');
   }

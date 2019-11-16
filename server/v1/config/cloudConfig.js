@@ -11,10 +11,13 @@ cloudinary.config({
 
 const upload = async (file) => {
   try {
-    const image = await cloudinary.uploader.upload(file, (result) => result);
-    return image;
-  } catch (err) {
-    console.log(err);
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+      const image = await cloudinary.uploader.upload(file.tempFilePath, (result) => result);
+      return image;
+    }
+  } catch (e) {
+    const error = e;
+    throw error;
   }
 };
 

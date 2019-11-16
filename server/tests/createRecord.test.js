@@ -33,13 +33,15 @@ describe('Creating a record', () => {
       .set('token', mockData.benToken)
       .send(mockData.newIntRecord)
       .end((err, res) => {
+        console.log(res.body);
+
         res.should.have.status(201);
         res.should.have.property('body');
         res.body.should.have.property('status').eql(201);
         res.body.should.have.property('message').eql('Record created successfully');
         res.body.should.have.property('data');
         res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorName', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
+        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorName', 'title', 'type', 'location', 'status', 'media', 'comment']);
         done();
       });
   });
