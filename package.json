@@ -4,7 +4,7 @@
   "description": "Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public.",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.test.js --timeout 5000 --exit",
+    "test": "nyc --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.test.js --timeout 10000 --exit",
     "start": "node --require babel-core/register --require babel-polyfill ./server/app.js",
     "dev": "nodemon --require babel-core/register --require babel-polyfill ./server/app.js",
     "lint": "eslint server",

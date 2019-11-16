@@ -78,7 +78,7 @@ class RecordController {
         authorId, title: recordTitle, authorName, status: recordStatus,
       } = record;
       const author = users.find((user) => user.id === authorId);
-      const { email, phone } = author;
+      const { email } = author;
       await Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
       Helpers.sendSuccess(res, 200, 'Record status updated successfully', { status: record.status });
     } else Helpers.sendError(res, 404, 'Record not found');
