@@ -85,7 +85,7 @@ describe('Editing a record', () => {
         done();
       });
   });
-  it('Admin should change the status of a record', (done) => {
+  it('Admin should not change the status of a record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
       .set('token', mockData.adminToken)
