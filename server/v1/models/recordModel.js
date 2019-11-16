@@ -2,7 +2,7 @@ import Helpers from '../helpers/helpers';
 import { records } from '../data/data';
 
 class Record {
-  constructor(authorId, fName, lName, title, type, location, mediaUrl, comment) {
+  constructor(authorId, fName, lName, title, type, location, media, comment) {
     this.id = Helpers.setId(records);
     this.createdOn = new Date().toLocaleString();
     this.authorId = authorId;
@@ -11,7 +11,7 @@ class Record {
     this.type = type;
     this.location = location;
     this.status = 'pending';
-    this.mediaUrl = mediaUrl;
+    this.media = media;
     this.comment = comment;
   }
 }

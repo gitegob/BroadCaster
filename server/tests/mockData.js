@@ -14,10 +14,10 @@ const mockData = {
   benSignup: {
     firstName: 'Ben',
     lastName: 'Gisa',
-    email: 'bengisa@gmail.com',
+    email: 'gitegobtech@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',
-    phone: '+250739128239',
+    phone: '+250785721391',
   },
   bruceSignup: {
     firstName: 'Bruce',
@@ -29,7 +29,7 @@ const mockData = {
   },
   benSignupInc: {
     firstName: 'Ben',
-    email: 'bengisa@gmail.com',
+    email: 'gitegobtech@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',
     phone: '+250785721391',
@@ -37,13 +37,13 @@ const mockData = {
   benSignupBad: {
     firstName: 'Ben',
     lastName: 'Gis  a',
-    email: 'bengisa@gmail.com',
+    email: 'gitegobtech@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',
     phone: '+250785721391',
   },
   benLogin: {
-    email: 'bengisa@gmail.com',
+    email: 'gitegobtech@gmail.com',
     password: 'Password@123',
   },
   adminLogin: {
@@ -55,7 +55,7 @@ const mockData = {
     password: 'Password@123',
   },
   benLoginIncPwd: {
-    email: 'bengisa@gmail.com',
+    email: 'gitegobtech@gmail.com',
     password: 'Password@100',
   },
   benLoginBad: {

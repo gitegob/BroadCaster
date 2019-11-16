@@ -1,7 +1,8 @@
 import jwt from 'jsonwebtoken';
 import { records } from '../data/data';
-import transporter from '../config/mailerConfig';
-import nexmo from '../config/smsConfig';
+import sgMail from '../config/mailerConfig';
+import upload from '../config/cloudConfig';
+
 
 class Helpers {
   static sendSuccess(res, status, message, data) {
@@ -70,21 +71,15 @@ class Helpers {
   }
 
   static async sendEmail(to, name, title, status) {
-    const mailOptions = {
-      from: '"BroadCaster" <noreply@broadcaster.com>',
+    const msg = {
       to,
+      from: '"BroadCaster" <noreply@broadcaster.com>',
       subject: 'Update from Broadcaster',
+      text: 'and easy to do anywhere, even with Node.js',
       html: `<b>Hi ${name}</b><br>
       Your record with title <b style="color:#333333;">${title}</b> status has been set to <b style="color:#333333;text-transform:uppercase;">${status}</b>`,
     };
-    await transporter.sendMail(mailOptions);
-  }
-
-  static async sendSms(number, name, title, status) {
-    const from = 'BroadCaster';
-    const to = number;
-    const text = `Hi ${name}, Your record with title: "${title}" has been set to "${status}"`;
-    await nexmo.message.sendSms(from, to, text);
+    await sgMail.send(msg);
   }
 }
 

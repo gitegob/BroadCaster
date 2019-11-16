@@ -67,10 +67,11 @@ describe('Editing a record', () => {
         res.body.should.have.property('message').eql('Record edited successfully');
         res.body.should.have.property('data');
         res.body.data.should.have.property('record');
-        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorName', 'title', 'type', 'location', 'status', 'mediaUrl', 'comment']);
+        res.body.data.record.should.have.all.keys(['id', 'createdOn', 'authorId', 'authorName', 'title', 'type', 'location', 'status', 'media', 'comment']);
         done();
       });
   });
+
   it('user should not edit their record with invalid info', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}`)
@@ -84,7 +85,7 @@ describe('Editing a record', () => {
         done();
       });
   });
-  it('Admin should change the status of a record', (done) => {
+  it('Admin should not change the status of a non-existing record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
       .set('token', mockData.adminToken)
@@ -97,6 +98,19 @@ describe('Editing a record', () => {
         done();
       });
   });
+  it('Admin should not change the status of a non-existing record', (done) => {
+    chai.request(app)
+      .patch('/api/v1/records/1223/status')
+      .set('token', mockData.adminToken)
+      .send({ status: 'under investigation' })
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('Record not found');
+        done();
+      });
+  });
   it('Non-Admin should not change the status of a record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
@@ -106,7 +120,7 @@ describe('Editing a record', () => {
         res.should.have.status(403);
         res.should.have.property('body');
         res.body.should.have.property('status').eql(403);
-        res.body.should.have.property('error').eql('Unauthorized');
+        res.body.should.have.property('error').eql('This request requires Administrator privileges');
         done();
       });
   });

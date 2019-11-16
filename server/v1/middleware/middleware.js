@@ -67,7 +67,7 @@ class Middleware {
 
   static adminAuth(req, res, next) {
     if (req.payload.isAdmin) next();
-    else Helpers.sendError(res, 403, 'Unauthorized');
+    else Helpers.sendError(res, 403, 'This request requires Administrator privileges');
   }
 
   static validateRecord(req, res, next) {

@@ -4,7 +4,7 @@
   "description": "Broadcaster enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public.",
   "main": "app.js",
   "scripts": {
-    "test": "nyc --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.test.js --timeout 5000 --exit",
+    "test": "nyc --reporter=text mocha --require babel-core/register --require babel-polyfill ./server/tests/*.test.js --timeout 10000 --exit",
     "start": "node --require babel-core/register --require babel-polyfill ./server/app.js",
     "dev": "nodemon --require babel-core/register --require babel-polyfill ./server/app.js",
     "lint": "eslint server",
@@ -27,6 +27,7 @@
   "homepage": "https://github.com/gitego-brian/BroadCaster#readme",
   "dependencies": {
     "@hapi/joi": "^16.1.7",
+    "@sendgrid/mail": "^6.4.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-polyfill": "^6.26.0",
@@ -39,10 +40,7 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.1.6-alpha.6",
     "jsonwebtoken": "^8.5.1",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.2",
-    "nexmo": "^2.5.1",
-    "nodemailer": "^6.3.1"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
