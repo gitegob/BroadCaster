@@ -71,21 +71,7 @@ describe('Editing a record', () => {
         done();
       });
   });
-
-  it('user should not edit their record with invalid info', (done) => {
-    chai.request(app)
-      .patch(`/api/v1/records/${mockData.recordId}`)
-      .set('token', mockData.benToken)
-      .send(mockData.newRecordEditedWrong)
-      .end((err, res) => {
-        res.should.have.status(400);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('type must be one of [red-flag, intervention]');
-        done();
-      });
-  });
-  it('Admin should not change the status of a non-existing record', (done) => {
+  it('Admin should change the status of a record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
       .set('token', mockData.adminToken)
@@ -95,19 +81,6 @@ describe('Editing a record', () => {
         res.should.have.property('body');
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('message').eql('Record status updated successfully');
-        done();
-      });
-  });
-  it('Admin should not change the status of a non-existing record', (done) => {
-    chai.request(app)
-      .patch('/api/v1/records/1223/status')
-      .set('token', mockData.adminToken)
-      .send({ status: 'under investigation' })
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('Record not found');
         done();
       });
   });
@@ -121,19 +94,6 @@ describe('Editing a record', () => {
         res.should.have.property('body');
         res.body.should.have.property('status').eql(403);
         res.body.should.have.property('error').eql('This request requires Administrator privileges');
-        done();
-      });
-  });
-  it('Should not edit a record which is under investigation', (done) => {
-    chai.request(app)
-      .patch(`/api/v1/records/${mockData.recordId}`)
-      .set('token', mockData.benToken)
-      .send(mockData.newRecordEdited)
-      .end((err, res) => {
-        res.should.have.status(403);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(403);
-        res.body.should.have.property('error').eql('Record cannot be edited');
         done();
       });
   });

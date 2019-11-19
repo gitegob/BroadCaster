@@ -129,21 +129,6 @@ describe('Fetching records', () => {
         done();
       });
   });
-  it('Admin should fetch all red-flag records by all users', (done) => {
-    chai.request(app)
-      .get('/api/v1/records/red-flags')
-      .set('token', mockData.adminToken)
-      .end((err, res) => {
-        res.should.have.status(200);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(200);
-        res.body.should.have.property('message').eql('Records fetched successfully');
-        res.body.should.have.property('data');
-        res.body.data.should.have.property('records');
-        res.body.data.records.should.be.a('Array');
-        done();
-      });
-  });
   it('should fetch all intervention records by a user', (done) => {
     chai.request(app)
       .get('/api/v1/records/interventions')
@@ -192,18 +177,6 @@ describe('Fetching records', () => {
   it('should not fetch another user\'s record', (done) => {
     chai.request(app)
       .get(`/api/v1/records/${mockData.recordId2}`)
-      .set('token', mockData.benToken)
-      .end((err, res) => {
-        res.should.have.status(404);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('Record not found');
-        done();
-      });
-  });
-  it('should not fetch a non-existing record', (done) => {
-    chai.request(app)
-      .get('/api/v1/records/2344')
       .set('token', mockData.benToken)
       .end((err, res) => {
         res.should.have.status(404);

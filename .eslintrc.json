@@ -17,6 +17,7 @@
     "sourceType": "module"
   },
   "rules": {
+    "linebreak-style":"off",
     "no-unused-vars": "off",
     "no-confusing-arrow": "off",
     "no-restricted-globals": "off",
