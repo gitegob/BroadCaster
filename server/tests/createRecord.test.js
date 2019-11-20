@@ -69,19 +69,6 @@ describe('Creating a record', () => {
         done();
       });
   });
-  it('Should not create a record with an invalid token', (done) => {
-    chai.request(app)
-      .post('/api/v1/records')
-      .set('token', mockData.invalidToken)
-      .send(mockData.newIntRecord)
-      .end((err, res) => {
-        res.should.have.status(500);
-        res.should.have.property('body');
-        res.body.should.have.property('status').eql(500);
-        res.body.should.have.property('error').eql('SERVER DOWN!: invalid token');
-        done();
-      });
-  });
   it('Should not create a record with a non existing user\'s token', (done) => {
     chai.request(app)
       .post('/api/v1/records')

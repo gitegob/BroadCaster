@@ -17,42 +17,4 @@ describe('App tests', () => {
         done();
       });
   });
-  it('should display a not found message', (done) => {
-    chai
-      .request(app)
-      .get('/hiuhukhoih')
-      .end((_err, res) => {
-        res.should.have.status(404);
-        res.body.should.be.a('object');
-        res.body.should.have.property('status').eql(404);
-        res.body.should.have.property('error').eql('Not Found');
-        done();
-      });
-  });
-  it('should display a syntax error message', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/error')
-      .send({ status: 400 })
-      .end((_err, res) => {
-        res.should.have.status(400);
-        res.body.should.be.a('object');
-        res.body.should.have.property('status').eql(400);
-        res.body.should.have.property('error').eql('SERVER DOWN!: Syntax error in your input');
-        done();
-      });
-  });
-  it('should display a server error message', (done) => {
-    chai
-      .request(app)
-      .post('/api/v1/auth/error')
-      .send({ status: 500 })
-      .end((_err, res) => {
-        res.should.have.status(500);
-        res.body.should.be.a('object');
-        res.body.should.have.property('status').eql(500);
-        res.body.should.have.property('error').eql('SERVER DOWN!: Internal server error');
-        done();
-      });
-  });
 });
