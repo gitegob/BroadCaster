@@ -16,8 +16,8 @@ const upload = async (file) => {
       return image;
     }
   } catch (e) {
-    const error = e;
-    throw error;
+    e.message = 'Media upload failed, Try again';
+    throw e;
   }
 };
 
