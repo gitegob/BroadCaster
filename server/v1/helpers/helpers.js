@@ -84,23 +84,16 @@ class Helpers {
 
   static async uploadFile(req) {
     const mediaArr = [];
-    if (req.files) {
-      const { media } = req.files;
-      let cloudFile;
-      try {
-        if (Array.isArray(media)) {
-          for (const el of media) {
-            cloudFile = await upload(el);
-            mediaArr.push(cloudFile.url);
-          }
-        } else {
-          cloudFile = await upload(media);
-          mediaArr.push(cloudFile.url);
-        }
-      } catch (e) {
-        const error = e;
-        throw error;
+    const { media } = req.files;
+    let cloudFile;
+    if (Array.isArray(media)) {
+      for (const el of media) {
+        cloudFile = await upload(el);
+        mediaArr.push(cloudFile.url);
       }
+    } else {
+      cloudFile = await upload(media);
+      mediaArr.push(cloudFile.url);
     }
     return mediaArr;
   }
