@@ -9,14 +9,10 @@ class RecordController {
     const {
       title, type, location, comment,
     } = req.body;
-    const mediaArr = [];
+    let mediaArr;
     if (req.files) {
-      const { media } = req.files;
-      for (const el of media) {
-        const cloudFile = await upload(el);
-        mediaArr.push(cloudFile.url);
-      }
-    }
+      mediaArr = await Helpers.uploadFile(req);
+    } else mediaArr = [];
     const newRecord = new Record(id, firstName, lastName,
       title, type, location, mediaArr, comment);
     records.push(newRecord);
