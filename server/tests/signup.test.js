@@ -44,7 +44,7 @@ describe('Signup tests', () => {
         done();
       });
   });
-  it('should not signup an a user with incomplete info', (done) => {
+  it('should not signup a user with incomplete info', (done) => {
     chai
       .request(app)
       .post('/api/v1/auth/signup')

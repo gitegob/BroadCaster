@@ -38,7 +38,7 @@ app.listen(port, () => {
   } = process.env;
   const admin = new Admin(A_FNAME, A_LNAME, A_EMAIL, A_PASSWORD, A_USERNAME, A_PHONE);
   users.push(admin);
-  process.stdout.write(`Connected on ${port}`);
+  process.stdout.write(`\nConnected on ${port}\n`);
 });
 
 export default app;

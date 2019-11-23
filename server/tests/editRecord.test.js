@@ -71,6 +71,7 @@ describe('Editing a record', () => {
         done();
       });
   });
+
   it('Admin should change the status of a record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
@@ -81,6 +82,21 @@ describe('Editing a record', () => {
         res.should.have.property('body');
         res.body.should.have.property('status').eql(200);
         res.body.should.have.property('message').eql('Record status updated successfully');
+        res.body.should.have.property('data');
+        res.body.data.should.have.property('status').eql('under investigation');
+        done();
+      });
+  });
+  it('user should not edit a record under investigation', (done) => {
+    chai.request(app)
+      .patch(`/api/v1/records/${mockData.recordId}`)
+      .set('token', mockData.benToken)
+      .send(mockData.newRecordEdited)
+      .end((err, res) => {
+        res.should.have.status(403);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(403);
+        res.body.should.have.property('error').eql('Record cannot be edited');
         done();
       });
   });

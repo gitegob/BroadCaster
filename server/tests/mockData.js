@@ -12,7 +12,7 @@ const mockData = {
     phone: process.env.A_PHONE,
   },
   benSignup: {
-    firstName: 'Ben',
+    firstName: 'Ben Fabregas',
     lastName: 'Gisa',
     email: 'gitegobtech@gmail.com',
     password: 'Password@123',
@@ -20,7 +20,7 @@ const mockData = {
     phone: '+250785721391',
   },
   bruceSignup: {
-    firstName: 'Bruce',
+    firstName: 'Bruce Johnson',
     lastName: 'Sangwa',
     email: 'bruceSangwa@gmail.com',
     password: 'Password@123',
@@ -35,8 +35,8 @@ const mockData = {
     phone: '+250785721391',
   },
   benSignupBad: {
-    firstName: 'Ben',
-    lastName: 'Gis  a',
+    firstName: 'B',
+    lastName: 'Gisa',
     email: 'gitegobtech@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',
@@ -63,10 +63,10 @@ const mockData = {
     password: 'Password@123',
   },
   newIntRecord: {
-    title: 'Corruption somewhere',
+    title: 'Corruption   somewhere',
     type: 'intervention',
     location: '22.6789,11.56890',
-    comment: 'There is corruption in my neighborhood and it has got to stop',
+    comment: 'There is   corruption in my neighborhood and it has got to stop',
   },
   newRecordEdited: {
     title: 'Corruption somewhere edited',
