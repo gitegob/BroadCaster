@@ -63,10 +63,10 @@ const mockData = {
     password: 'Password@123',
   },
   newIntRecord: {
-    title: 'Corruption somewhere',
+    title: 'Corruption   somewhere',
     type: 'intervention',
     location: '22.6789,11.56890',
-    comment: 'There is corruption in my neighborhood and it has got to stop',
+    comment: 'There is   corruption in my neighborhood and it has got to stop',
   },
   newRecordEdited: {
     title: 'Corruption somewhere edited',
