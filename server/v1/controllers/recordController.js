@@ -1,7 +1,6 @@
 import Record from '../models/recordModel';
 import { users, records } from '../data/data';
 import Helpers from '../helpers/helpers';
-import upload from '../config/cloudConfig';
 
 class RecordController {
   static async createRecord(req, res) {
@@ -14,7 +13,7 @@ class RecordController {
       mediaArr = await Helpers.uploadFile(req);
     } else mediaArr = [];
     const newRecord = new Record(id, firstName, lastName,
-      title, type, location, mediaArr, comment);
+      title.replace(/\s+/, ' ').trim(), type, location, mediaArr, comment.replace(/\s+/, ' ').trim());
     records.push(newRecord);
     Helpers.sendSuccess(res, 201, 'Record created successfully', { record: newRecord });
   }
@@ -55,10 +54,10 @@ class RecordController {
     const record = Helpers.findUserRecord(req.params.recordID, req.payload.id);
     if (record) {
       if (record.status === 'pending') {
-        record.title = title || record.title;
+        record.title = title.replace(/\s+/, ' ').trim() || record.title;
         record.type = type || record.type;
         record.location = location || record.location;
-        record.comment = comment || record.comment;
+        record.comment = comment.replace(/\s+/, ' ').trim() || record.comment;
         Helpers.sendSuccess(res, 200, 'Record edited successfully', { record });
       } else Helpers.sendError(res, 403, 'Record cannot be edited');
     } else Helpers.sendError(res, 404, 'Record not found');
@@ -75,8 +74,8 @@ class RecordController {
       } = record;
       const author = users.find((user) => user.id === authorId);
       const { email } = author;
-      await Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
       Helpers.sendSuccess(res, 200, 'Record status updated successfully', { status: record.status });
+      await Helpers.sendEmail(email, authorName, recordTitle, recordStatus);
     } else Helpers.sendError(res, 404, 'Record not found');
   }
 

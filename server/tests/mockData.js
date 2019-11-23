@@ -12,7 +12,7 @@ const mockData = {
     phone: process.env.A_PHONE,
   },
   benSignup: {
-    firstName: 'Ben',
+    firstName: 'Ben Fabregas',
     lastName: 'Gisa',
     email: 'gitegobtech@gmail.com',
     password: 'Password@123',
@@ -20,7 +20,7 @@ const mockData = {
     phone: '+250785721391',
   },
   bruceSignup: {
-    firstName: 'Bruce',
+    firstName: 'Bruce Johnson',
     lastName: 'Sangwa',
     email: 'bruceSangwa@gmail.com',
     password: 'Password@123',
@@ -35,8 +35,8 @@ const mockData = {
     phone: '+250785721391',
   },
   benSignupBad: {
-    firstName: 'Ben',
-    lastName: 'Gis  a',
+    firstName: 'B',
+    lastName: 'Gisa',
     email: 'gitegobtech@gmail.com',
     password: 'Password@123',
     userName: 'bengisa',

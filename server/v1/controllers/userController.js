@@ -8,7 +8,7 @@ class UserController {
     const {
       firstName, lastName, email, password, userName, phone,
     } = req.body;
-    const newUser = new User(firstName, lastName, email, password, userName, phone);
+    const newUser = new User(firstName.replace(/\s+/, ' ').trim(), lastName.replace(/\s+/, ' ').trim(), email, password, userName, phone);
     Helpers.sendSuccess(res, 201, 'User created successfully', {
       token: Helpers.genToken(newUser),
     });

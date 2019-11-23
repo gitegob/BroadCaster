@@ -79,7 +79,12 @@ class Helpers {
       html: `<b>Hi ${name}</b><br>
       Your record with title <b style="color:#333333;">${title}</b> status has been set to <b style="color:#333333;text-transform:uppercase;">${status}</b>`,
     };
-    await sgMail.send(msg);
+    await sgMail.send(msg, (err, _result) => {
+      if (err) {
+        console.log(err);
+        throw err;
+      }
+    });
   }
 
   static async uploadFile(req) {

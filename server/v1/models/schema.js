@@ -2,9 +2,9 @@ import Joi from '@hapi/joi';
 
 const schema = {
   signupSchema: Joi.object({
-    firstName: Joi.string().min(2).trim().regex(/^\S[A-Za-z]{1,}$/)
+    firstName: Joi.string().min(2).trim().regex(/^[\sA-Za-z]{1,}$/)
       .required(),
-    lastName: Joi.string().min(2).trim().regex(/^\S[A-Za-z]{1,}$/)
+    lastName: Joi.string().min(2).trim().regex(/^[\sA-Za-z]{1,}$/)
       .required(),
     email: Joi.string().email().required(),
     password: Joi.string().regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,128}$/)
