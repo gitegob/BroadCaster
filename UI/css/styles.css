@@ -92,6 +92,12 @@ input:focus {
   text-transform: none;
   font-variant: small-caps;
 }
+.broad {
+  background-color: #222;
+  padding: 5px 10px;
+  color: whitesmoke;
+  border-radius: 20px;
+}
 .nav-link-wrapper,
 .tab-link-wrapper,
 .status-link-wrapper {
@@ -144,8 +150,13 @@ img.author-pic {
   border: 1px solid grey;
   border-radius: 50%;
 }
+.user-wrapper .user-pic{
+  width: 70%;
+  margin: auto;
+}
 .user-wrapper .user-pic img {
   width: 100%;
+  border-radius: 50%;
   border: 1px solid rgb(223, 220, 220);
 }
 .leftside,
@@ -157,7 +168,7 @@ img.author-pic {
   overflow: auto;
   background-color: whitesmoke;
   margin-top: 1rem;
-  height: fit-content;
+  height: 90vh;
   position: sticky;
   top: 10%;
 }
@@ -274,7 +285,14 @@ img.author-pic {
   font-weight: bold;
   font-style: italic;
 }
-
+.record .read-more {
+  background-color: #555;
+  color: whitesmoke;
+}
+.record .read-more:hover {
+  background-color: #222;
+  color: whitesmoke;
+}
 .inter {
   color: rgb(98, 52, 226);
 }
@@ -289,6 +307,7 @@ img.author-pic {
 }
 .title {
   color: #555;
+  font-weight: bold;
   text-transform: uppercase;
 }
 .title:hover a {
@@ -399,6 +418,9 @@ select.status:focus {
   padding: 0.25rem;
   margin-left: 0.5rem;
 }
+.new-page .author-info .author-name{
+  font-weight: bold;
+}
 .user-wrapper .user-info div {
   color: #555;
   margin-top: 0.5rem;
@@ -449,6 +471,9 @@ textarea:focus {
 }
 .record-edit {
   padding: 1rem;
+}
+.record-edit select {
+  margin-top: 2rem;
 }
 .new-page .record-info {
   display: block;
@@ -670,16 +695,17 @@ textarea:focus {
   padding: 10px;
   height: fit-content;
   position: relative;
-  background-color: rgba(245, 245, 245, 0.596);
+  background-color: rgba(245, 245, 245, 0.822);
 }
 .modal-bg .close-modal {
   position: absolute;
+  display: block;
   top: -5%;
   right: 2%;
   transform: rotate(45deg);
   --webkit-transform: rotate(45deg);
   z-index: 2;
-  font-size: 3em;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -727,15 +753,11 @@ textarea:focus {
       'left left left left'
       'middle middle middle middle';
   }
-  .pages .leftside .user-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
   .pages .leftside .user-pic {
     width: 35%;
   }
   .pages .leftside {
+    height: fit-content;
     min-height: auto;
     position: static;
   }
@@ -771,4 +793,5 @@ textarea:focus {
   .new-record {
     width: 100%;
   }
+
 }
