@@ -47,7 +47,9 @@ input:focus {
   text-align: center;
   text-transform: uppercase;
 }
-
+[button]:focus{
+  outline: none;
+}
 .grid-container {
   display: grid;
   grid-template-areas:
@@ -80,7 +82,9 @@ input:focus {
   z-index: 23;
 }
 .right {
+  padding: 1rem;
   display: flex;
+  padding-bottom: 0;
   flex-wrap: wrap;
   justify-content: space-around;
   justify-items: flex-end;
@@ -91,6 +95,15 @@ input:focus {
   font-weight: bold;
   text-transform: none;
   font-variant: small-caps;
+}
+.right {
+  padding-top: 1.2rem
+}
+.broad {
+  background-color: #222;
+  padding: 5px 12px;
+  color: whitesmoke;
+  border-radius: 50%;
 }
 .nav-link-wrapper,
 .tab-link-wrapper,
@@ -144,8 +157,13 @@ img.author-pic {
   border: 1px solid grey;
   border-radius: 50%;
 }
+.user-wrapper .user-pic{
+  width: 70%;
+  margin: auto;
+}
 .user-wrapper .user-pic img {
   width: 100%;
+  border-radius: 50%;
   border: 1px solid rgb(223, 220, 220);
 }
 .leftside,
@@ -157,7 +175,7 @@ img.author-pic {
   overflow: auto;
   background-color: whitesmoke;
   margin-top: 1rem;
-  height: fit-content;
+  height: 90vh;
   position: sticky;
   top: 10%;
 }
@@ -167,7 +185,8 @@ img.author-pic {
   background: none;
 }
 .index-page .middle,
-.logup-page .middle {
+.logup-page .middle,
+.about-page .middle {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('../images/black afro dude.jpg');
   background-color: #333;
@@ -214,18 +233,19 @@ img.author-pic {
   background-color: white;
   transition: 0.8s;
 }
+.logup-page .middle{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+}
 .center {
   width: 35%;
-  position: relative;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   background-color: rgba(0, 0, 0, 0.5);
   margin: 1rem;
-  left: 95%;
   padding: 30px;
-  -moz-transform: translateX(-95%);
-  -webkit-transform: translateX(-95%);
-  transform: translateX(-95%);
 }
 .center h2 {
   color: #aaa;
@@ -262,10 +282,37 @@ img.author-pic {
 .records-wrapper {
   padding-bottom: 1rem;
 }
+.search-panel {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.search-panel input {
+  width: 80%;
+  border: none;
+  background-color: whitesmoke;
+}
+.search-panel input:focus{
+  border-bottom: 2px solid #999;
+}
+.search-btn {
+  border: none
+}
+.search-btn:hover{
+  color: whitesmoke;
+  background-color: #666;
+}
 .record {
   background-color: whitesmoke;
   margin-top: 1rem;
   padding: 1rem;
+}
+.record:hover .quick-panel {
+  display: block;
+  transition: all ease-in .5s;
 }
 .record div {
   margin-bottom: 0.8rem;
@@ -274,7 +321,29 @@ img.author-pic {
   font-weight: bold;
   font-style: italic;
 }
+.record .read-more {
+  background-color: #555;
+  color: whitesmoke;
+}
+.record .read-more:hover {
+  background-color: #222;
+  color: whitesmoke;
+}
+.quick-panel {
+  display: none;
+}
+.quick-panel a{
+  display: inline-block;
+  border: none;
+  background: none;
+  margin-right: 1rem;
+  padding: 0;
+  color: #666
+}
+.quick-panel a:hover{
+  color: #333;
 
+}
 .inter {
   color: rgb(98, 52, 226);
 }
@@ -289,6 +358,7 @@ img.author-pic {
 }
 .title {
   color: #555;
+  font-weight: bold;
   text-transform: uppercase;
 }
 .title:hover a {
@@ -362,7 +432,7 @@ img.author-pic {
 }
 
 iframe {
-  width: 100%;
+  width: 40%;
 }
 .status {
   text-transform: uppercase;
@@ -398,6 +468,9 @@ select.status:focus {
   font-size: 1.2rem;
   padding: 0.25rem;
   margin-left: 0.5rem;
+}
+.new-page .author-info .author-name{
+  font-weight: bold;
 }
 .user-wrapper .user-info div {
   color: #555;
@@ -450,6 +523,9 @@ textarea:focus {
 .record-edit {
   padding: 1rem;
 }
+.record-edit select {
+  margin-top: 2rem;
+}
 .new-page .record-info {
   display: block;
 }
@@ -463,16 +539,20 @@ textarea:focus {
 .new-page .record-info .author-info span {
   display: block;
 }
-
 .new-page .add-location input,
 .new-page .add-media input {
   width: fit-content;
   font-size: 1rem;
 }
+.coordinates input {
+  display: inline-block;
+  width: fit-content
+}
 .new-page .add-media {
   background-color: #888;
   padding: 0.5rem;
   width: fit-content;
+  margin-left: 1rem
 }
 .new-page .add-media input {
   border: none;
@@ -501,6 +581,15 @@ textarea:focus {
   width: fit-content;
   display: none;
 }
+.locate-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: .5rem;
+}
+.locate-wrapper input {
+  padding: 0;
+}
 .show {
   display: block !important;
 }
@@ -527,11 +616,13 @@ textarea:focus {
 .new-page .new-record .post-panel a {
   margin-left: 1rem;
 }
-.about-page .middle,
-.contact-page .middle {
+.about-page .sub-middle,
+.contact-page .sub-middle {
   display: flex;
   flex-wrap: wrap;
   padding: 1rem;
+  width: 70%;
+  margin: auto;
 }
 .contact-page .middle {
   flex-wrap: wrap-reverse;
@@ -542,12 +633,16 @@ textarea:focus {
 }
 .about-page .my-info,
 .contact-page .my-info {
-  flex: 30%;
+  flex: 20%;
+  background-color: rgba(245, 245, 245, 0.514);
   background-color: #666;
+}
+.contact-us-wrapper {
+  display: none;
 }
 .about-page .my-info .user-wrapper,
 .contact-page .my-info .user-wrapper {
-  background-color: inherit;
+  background: none;
   color: whitesmoke;
 }
 .about-page .my-info .user-wrapper div a,
@@ -559,7 +654,8 @@ textarea:focus {
 .about-page .about-me,
 .contact-page .about-me {
   flex: 70%;
-  background-color: whitesmoke;
+  background-color: rgba(245, 245, 245, 0.596);
+  backdrop-filter: blur(10px);
   font-size: 1.2rem;
 }
 .contact-page .user-wrapper .user-pic img {
@@ -596,7 +692,6 @@ textarea:focus {
 }
 .feedback .hear-from-u {
   color: #333;
-  text-align: center;
   font-size: 1.2rem;
 }
 .feedback-email {
@@ -618,12 +713,17 @@ textarea:focus {
   border-left: 3px solid #444;
   background-color: #ddd;
 }
-.feedback-submit {
+.feedback-submit,
+.contact-us-btn {
   border: none;
   background-color: #444;
   color: whitesmoke;
 }
-.feedback-submit:hover {
+.contact-us-btn {
+  margin-left: 1rem;
+}
+.feedback-submit:hover,
+ .contact-us-btn:hover{
   background-color: #222;
 }
 .pagination {
@@ -670,16 +770,17 @@ textarea:focus {
   padding: 10px;
   height: fit-content;
   position: relative;
-  background-color: rgba(245, 245, 245, 0.596);
+  background-color: rgba(245, 245, 245, 0.822);
 }
 .modal-bg .close-modal {
   position: absolute;
+  display: block;
   top: -5%;
   right: 2%;
   transform: rotate(45deg);
   --webkit-transform: rotate(45deg);
   z-index: 2;
-  font-size: 3em;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -727,17 +828,19 @@ textarea:focus {
       'left left left left'
       'middle middle middle middle';
   }
-  .pages .leftside .user-wrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
   .pages .leftside .user-pic {
     width: 35%;
   }
   .pages .leftside {
+    height: fit-content;
     min-height: auto;
     position: static;
+  }
+  .about-page .sub-middle {
+    width: 90%
+  }
+  .center {
+    width: 50%;
   }
 }
 @media (max-width: 600px) {
@@ -753,22 +856,30 @@ textarea:focus {
   .tab-wrapper {
     position: static;
   }
+  .logup-page .middle {
+    justify-content: center;
+  }
   .center {
     width: 80%;
-    left: 47%;
-    -moz-transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
   }
   .new-page textarea {
     padding: 1rem;
     font-size: 1.2rem;
     width: 100%;
   }
+ .search-panel {
+   width: 100%;
+ }
   .new-record input {
     font-size: 1.5rem;
   }
   .new-record {
     width: 100%;
+  }
+}
+  @media (max-width: 412px) {
+  .left, .right {
+    width: fit-content;
+    margin: auto;
   }
 }

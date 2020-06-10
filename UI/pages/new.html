@@ -19,7 +19,7 @@
     <div class="grid-container">
       <div class="header">
         <div class="left">
-          <a href="../index.html">BroadCaster</a>
+          <a href="../index.html"><b><span class="broad">B</span><span class="caster">roadcaster</span></b></a>
         </div>
         <div class="right">
           <div class="nav-link-wrapper">
@@ -45,21 +45,28 @@
             </div>
           </div>
           <article class="record-edit">
+              <select name="Type" class="status">
+                  <option value="red-flag">Red-flag</option>
+                  <option value="intervention">Intervention</option>
+                </select>
             <input type="text" class="record-title-edit" placeholder="What is the issue?">
-            <textarea name="record-comment" class="record-comment-edit" rows="15" placeholder="Elaborate..."></textarea>
+            <textarea name="record-comment" class="record-comment-edit" rows="5" placeholder="Elaborate..."></textarea>
           </article>
           <div class="add-location">
             <button class="geolocate" button>Your location</button>
-            <button class="locate" button>Different location</button>
+            <div class="locate-wrapper">
+              <button class="locate" button>Different location</button>
             <div class="coordinates">
               <input type="text" class="latitude" placeholder="Latitude">
               <input type="text" class="longitude" placeholder="Longitude">
               <button type="submit" class="submit-coordinates">Add</button>
             </div>
+            </div>
+            
           </div>
           <div class="add-media">
-            <span>Add Images</span>
-            <input type="file" name="images" class="file-upload">
+            <span>Add Images/Videos</span>
+            <input type="file" name="images" class="file-upload" multiple accept="video/*,image/*">
           </div>
           <div class="post-panel">
             <a href="profile.html" class="cancel" button>Cancel</a>
@@ -73,9 +80,9 @@
 
   <div class="footer">
     &copy; 2019 - BroadCaster &nbsp;
-    <a href="contact.html">Contact us</a><span> &nbsp; </span><a href="#">API</a>
-  </div>
+    <span>&nbsp;</span><a href="https://brian-broadcaster.herokuapp.com">API</a>  </div>
   <script src="../scripts/script.js"></script>
+  <script src="../scripts//new.js"></script>
 </body>
 
 </html>
