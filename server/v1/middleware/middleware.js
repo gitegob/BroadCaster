@@ -50,17 +50,19 @@ class Middleware {
   static async auth(req, res, next) {
     const { token } = req.headers;
     if (!token) {
-      Helpers.sendError(res, 401, 'Please log in or signup first');
-    } else {
-      let decoded = {};
-      try {
-        decoded = jwt.verify(token, process.env.JWT_KEY);
-      } catch (error) {
-        Helpers.sendError(res, 401, 'Invalid token');
-      }
-      req.payload = decoded;
-      next();
+      return Helpers.sendError(res, 401, 'Please log in or signup first');
     }
+    let decoded = {};
+    try {
+      decoded = jwt.verify(token, process.env.JWT_KEY);
+    } catch (error) {
+      return Helpers.sendError(res, 401, 'Invalid token');
+    }
+    if (!users.find((el) => el.email === decoded.email)) {
+      return Helpers.sendError(res, 401, 'Invalid token');
+    }
+    req.payload = decoded;
+    next();
   }
 
   static adminAuth(req, res, next) {
