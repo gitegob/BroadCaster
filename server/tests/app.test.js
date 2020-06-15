@@ -17,6 +17,17 @@ describe('App tests', () => {
         done();
       });
   });
+  it('should display a "Not Found" error ', (done) => {
+    chai
+      .request(app)
+      .get('/blah')
+      .end((_err, res) => {
+        res.should.have.status(404);
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('Not Found');
+        done();
+      });
+  });
   it('should display a server error message', (done) => {
     chai
       .request(app)
