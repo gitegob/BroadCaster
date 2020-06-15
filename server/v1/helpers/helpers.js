@@ -3,7 +3,6 @@ import { records } from '../data/data';
 import sgMail from '../config/mailerConfig';
 import upload from '../config/cloudConfig';
 
-
 class Helpers {
   static sendSuccess(res, status, message, data) {
     res.status(status).send({
