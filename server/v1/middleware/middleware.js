@@ -4,7 +4,6 @@ import schema from '../models/schema';
 import Helpers from '../helpers/helpers';
 import { users } from '../data/data';
 
-
 class Middleware {
   static validateSignup(req, res, next) {
     const {
@@ -28,9 +27,7 @@ class Middleware {
   }
 
   static validateLogin(req, res, next) {
-    const {
-      email, password,
-    } = req.body;
+    const { email, password } = req.body;
     const { error } = schema.loginSchema.validate({
       email,
       password,
@@ -41,7 +38,7 @@ class Middleware {
   static checkLogin(req, res, next) {
     const user = users.find((el) => el.email === req.body.email);
     if (!user) {
-      Helpers.sendError(res, 404, 'User doesn\'t exist');
+      Helpers.sendError(res, 404, "User doesn't exist");
     } else {
       const password = bcrypt.compareSync(req.body.password, user.password);
       if (!password) {
@@ -50,24 +47,33 @@ class Middleware {
     }
   }
 
-  static auth(req, res, next) {
+  static async auth(req, res, next) {
     const { token } = req.headers;
     if (!token) {
-      Helpers.sendError(res, 401, 'Please log in or signup first');
-    } else {
-      const decoded = jwt.verify(token, process.env.JWT_KEY);
-      if (!users.find((el) => el.email === decoded.email)) {
-        Helpers.sendError(res, 401, 'Invalid token');
-      } else {
-        req.payload = decoded;
-        next();
-      }
+      return Helpers.sendError(res, 401, 'Please log in or signup first');
     }
+    let decoded = {};
+    try {
+      decoded = jwt.verify(token, process.env.JWT_KEY);
+    } catch (error) {
+      return Helpers.sendError(res, 401, 'Invalid token');
+    }
+    if (!users.find((el) => el.email === decoded.email)) {
+      return Helpers.sendError(res, 401, 'Invalid token');
+    }
+    req.payload = decoded;
+    next();
   }
 
   static adminAuth(req, res, next) {
     if (req.payload.isAdmin) next();
-    else Helpers.sendError(res, 403, 'This request requires Administrator privileges');
+    else {
+      Helpers.sendError(
+        res,
+        403,
+        'This request requires Administrator privileges',
+      );
+    }
   }
 
   static validateRecord(req, res, next) {
@@ -75,10 +81,17 @@ class Middleware {
       title, type, location, comment,
     } = req.body;
     const { error } = schema.recordSchema.validate({
-      title, type, location, comment,
+      title,
+      type,
+      location,
+      comment,
     });
     if (req.method === 'PATCH') {
-      if (error && (error.details[0].type === 'string.pattern.base' || error.details[0].type === 'any.only')) Helpers.checkJoiError(error, res, next);
+      if (
+        error
+        && (error.details[0].type === 'string.pattern.base'
+          || error.details[0].type === 'any.only')
+      ) Helpers.checkJoiError(error, res, next);
       else next();
     } else Helpers.checkJoiError(error, res, next);
   }

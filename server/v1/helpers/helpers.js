@@ -3,10 +3,9 @@ import { records } from '../data/data';
 import sgMail from '../config/mailerConfig';
 import upload from '../config/cloudConfig';
 
-
 class Helpers {
   static sendSuccess(res, status, message, data) {
-    res.status(status).send({
+    return res.status(status).send({
       status,
       message,
       data,
@@ -14,7 +13,7 @@ class Helpers {
   }
 
   static sendError(res, status, error) {
-    res.status(status).send({
+    return res.status(status).send({
       status,
       error,
     });

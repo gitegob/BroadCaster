@@ -71,7 +71,19 @@ describe('Editing a record', () => {
         done();
       });
   });
-
+  it('user should not edit a non-existent record', (done) => {
+    chai.request(app)
+      .patch('/api/v1/records/12')
+      .set('token', mockData.benToken)
+      .send(mockData.newRecordEdited)
+      .end((err, res) => {
+        res.should.have.status(404);
+        res.should.have.property('body');
+        res.body.should.have.property('status').eql(404);
+        res.body.should.have.property('error').eql('Record not found');
+        done();
+      });
+  });
   it('Admin should change the status of a record', (done) => {
     chai.request(app)
       .patch(`/api/v1/records/${mockData.recordId}/status`)
